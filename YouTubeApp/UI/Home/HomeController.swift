@@ -38,7 +38,7 @@ final class HomeController: UICollectionViewController {
 
 // MARK: UICollectionViewDataSource
 
-extension HomeController: UICollectionViewDelegateFlowLayout {
+extension HomeController {
   
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return 5
@@ -50,6 +50,13 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
     cell.backgroundColor = .red
     
     return cell
+  }
+}
+
+extension HomeController: UICollectionViewDelegateFlowLayout {
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    return CGSize(width: collectionView.frame.width, height: 200)
   }
 }
 
