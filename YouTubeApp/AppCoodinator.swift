@@ -8,6 +8,8 @@
 
 import UIKit
 
+// MARK: - AppCoordinatorFlow
+
 enum AppCoordinatorFlow {
   
   case homeCoordinator
@@ -39,7 +41,7 @@ final class AppCoodinator: Coordinator, AppCoordinatorProtocol {
   }
 }
 
-// MARK: HomeCoordinatorDelegate
+// MARK: - HomeCoordinatorDelegate
 
 extension AppCoodinator: HomeCoordinatorDelegate {
   
