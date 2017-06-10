@@ -54,10 +54,10 @@
 		925952B41EEB28790050D14F /* YouTubeApp */ = {
 			isa = PBXGroup;
 			children = (
-				925952C81EEB2E140050D14F /* Data */,
-				925952C71EEB2E010050D14F /* UI */,
-				925952CA1EEB2E500050D14F /* Supporting */,
 				925952B51EEB28790050D14F /* AppDelegate.swift */,
+				925952C71EEB2E010050D14F /* UI */,
+				925952C81EEB2E140050D14F /* Data */,
+				925952CA1EEB2E500050D14F /* Supporting */,
 				925952BC1EEB28790050D14F /* Assets.xcassets */,
 				925952BE1EEB28790050D14F /* LaunchScreen.storyboard */,
 			);
@@ -334,6 +334,7 @@
 				925952C61EEB28790050D14F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
