@@ -10,12 +10,32 @@ import UIKit
 
 final class VideoCell: UICollectionViewCell {
   
-  @IBOutlet weak var nameVideoLabel: UILabel!
+  static let identifier = "VideoCellIdentifier"
+
+  lazy var thumbnailImageView: UIImageView = {
+    let imageView = UIImageView()
+    imageView.backgroundColor = .red
+    return imageView
+  }()
   
+
   var viewModel: VideoCellViewModel? {
     didSet {
-      //nameVideoLabel.text = viewModel?.videoName
       backgroundColor = viewModel?.backgroundColor
     }
+  }
+  
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    setupViews()
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
+  func setupViews() {
+    addSubview(thumbnailImageView)
+    thumbnailImageView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
   }
 }

@@ -35,7 +35,7 @@ final class HomeController: UICollectionViewController {
   func loadCollectionView() {
     collectionView?.delegate = self
     collectionView?.dataSource = self
-    collectionView?.register(VideoCell.self, forCellWithReuseIdentifier: "cellId")
+    collectionView?.register(VideoCell.self, forCellWithReuseIdentifier: VideoCell.identifier)
   }
   
   func getVideos() {
@@ -45,18 +45,18 @@ final class HomeController: UICollectionViewController {
   }
 }
 
-// MARK: UICollectionViewDataSource
+// MARK: - UICollectionViewDataSource
 
 extension HomeController {
   
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 5
+    return videos?.count ?? 0
   }
   
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
     guard let video = videos?[indexPath.row] else { fatalError() }
-    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as? VideoCell else { fatalError() }
+    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VideoCell.identifier, for: indexPath) as? VideoCell else { fatalError() }
     
     let cellVM = VideoCellViewModel(video: video)
     
@@ -66,6 +66,8 @@ extension HomeController {
   }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
+
 extension HomeController: UICollectionViewDelegateFlowLayout {
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -73,7 +75,7 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
   }
 }
 
-// MARK: HomeViewModelDelegate
+// MARK: - HomeViewModelDelegate
 
 extension HomeController: HomeViewModelDelegate {
   
