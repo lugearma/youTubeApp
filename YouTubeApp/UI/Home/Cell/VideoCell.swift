@@ -36,6 +36,10 @@ final class VideoCell: UICollectionViewCell {
   
   func setupViews() {
     addSubview(thumbnailImageView)
+    
+    addConstraintsWithFormat(format: "H:|-16-v0-16|", view: thumbnailImageView)
+    addConstraintsWithFormat(format: "V:|-16-v0-16|", view: thumbnailImageView)
+    
     thumbnailImageView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
   }
 }
