@@ -35,7 +35,10 @@ final class HomeCoordinator: Coordinator {
   func configureHomeViewController() -> UINavigationController {
     
     let layout = UICollectionViewFlowLayout()
-    let navigationController = UINavigationController(rootViewController: HomeController(collectionViewLayout: layout))
+    let homeController = HomeController(collectionViewLayout: layout)
+    homeController.viewModel = HomeViewModel()
+    
+    let navigationController = UINavigationController(rootViewController: homeController)
     
     return navigationController
   }

@@ -12,7 +12,7 @@ final class HomeController: UICollectionViewController {
   
   var videos: [Video]?
   
-  private(set) var viewModel: HomeViewModelProtocol? {
+  var viewModel: HomeViewModelProtocol? {
     willSet {
       viewModel?.delegate = nil
     }

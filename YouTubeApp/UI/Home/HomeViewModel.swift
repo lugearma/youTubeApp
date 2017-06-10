@@ -18,7 +18,7 @@ protocol HomeViewModelProtocol: class {
   
   weak var delegate: HomeViewModelDelegate? { get set }
   
-  init()
+//  init()
   
   func getVideos() -> [Video]
 }
@@ -29,9 +29,7 @@ final class HomeViewModel: HomeViewModelProtocol {
   
   weak var delegate: HomeViewModelDelegate?
   
-  init() {
-    
-  }
+//  init() {}
   
   // FIXME: Don't return nothing when this function gets connected with BE
   func getVideos() -> [Video] {
