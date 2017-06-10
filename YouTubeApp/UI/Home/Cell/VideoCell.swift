@@ -18,6 +18,12 @@ final class VideoCell: UICollectionViewCell {
     return imageView
   }()
   
+  lazy var separatorView: UIView = {
+    let view = UIView()
+    view.backgroundColor = .black
+    return view
+  }()
+  
 
   var viewModel: VideoCellViewModel? {
     didSet {
@@ -36,10 +42,15 @@ final class VideoCell: UICollectionViewCell {
   
   func setupViews() {
     addSubview(thumbnailImageView)
+    addSubview(separatorView)
     
-    addConstraintsWithFormat(format: "H:|-16-v0-16|", view: thumbnailImageView)
-    addConstraintsWithFormat(format: "V:|-16-v0-16|", view: thumbnailImageView)
     
-    thumbnailImageView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+    // Thumbnail Image View Constraints
+    addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", view: thumbnailImageView)
+    addConstraintsWithFormat(format: "V:|-16-[v0]-16-|", view: thumbnailImageView)
+    
+    //Separator View Constraints
+    addConstraintsWithFormat(format: "H:|[v0]|", view: separatorView)
+    addConstraintsWithFormat(format: "V:[v0(1)]|", view: separatorView)
   }
 }

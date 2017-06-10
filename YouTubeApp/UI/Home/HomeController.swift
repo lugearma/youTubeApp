@@ -64,6 +64,10 @@ extension HomeController {
     
     return cell
   }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    return 0
+  }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
