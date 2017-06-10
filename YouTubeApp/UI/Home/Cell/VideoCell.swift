@@ -10,15 +10,12 @@ import UIKit
 
 final class VideoCell: UICollectionViewCell {
   
-  var viewModel: VideoCellViewModelProtocol? {
-    willSet {
-      viewModel?.delegate = nil
-    }
-    
+  @IBOutlet weak var nameVideoLabel: UILabel!
+  
+  var viewModel: VideoCellViewModel? {
     didSet {
-      viewModel?.delegate = self
+      //nameVideoLabel.text = viewModel?.videoName
+      backgroundColor = viewModel?.backgroundColor
     }
   }
 }
-
-extension VideoCell: VideoCellVideModelDelegate {}

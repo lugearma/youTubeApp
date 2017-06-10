@@ -6,23 +6,30 @@
 //  Copyright © 2017 Luis Arias. All rights reserved.
 //
 
-import Foundation
-
-// MARK: - VideoCellVideModelDelegate
-
-protocol VideoCellVideModelDelegate: class {
-  
-}
+import UIKit
 
 // MARK: - VideoCellViewModelProtocol
 
 protocol VideoCellViewModelProtocol: class {
-  weak var delegate: VideoCellVideModelDelegate? { get set }
+  
+  var backgroundColor: UIColor { get }
+  var videoName: String { get }
+  var duration: Int { get }
+  
+  init(video: Video)
 }
 
 // MARK: - VideoCellViewModel
 
 final class VideoCellViewModel: VideoCellViewModelProtocol {
   
-  weak var delegate: VideoCellVideModelDelegate?
+  var backgroundColor: UIColor
+  var videoName: String
+  var duration: Int
+  
+  init(video: Video) {
+    self.backgroundColor = .blue
+    self.videoName = video.name
+    self.duration = video.duration
+  }
 }

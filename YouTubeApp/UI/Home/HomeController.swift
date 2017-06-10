@@ -10,13 +10,15 @@ import UIKit
 
 final class HomeController: UICollectionViewController {
   
-  private(set) var model: HomeViewModelProtocol? {
+  var videos: [Video]?
+  
+  private(set) var viewModel: HomeViewModelProtocol? {
     willSet {
-      model?.delegate = nil
+      viewModel?.delegate = nil
     }
     
     didSet {
-      model?.delegate = self
+      viewModel?.delegate = self
     }
   }
 
@@ -27,12 +29,19 @@ final class HomeController: UICollectionViewController {
     collectionView?.backgroundColor = .white
 
     loadCollectionView()
+    getVideos()
   }
   
   func loadCollectionView() {
     collectionView?.delegate = self
     collectionView?.dataSource = self
-    collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
+    collectionView?.register(VideoCell.self, forCellWithReuseIdentifier: "cellId")
+  }
+  
+  func getVideos() {
+    guard let viewModel = viewModel else { fatalError() }
+    
+    videos = viewModel.getVideos()
   }
 }
 
@@ -45,9 +54,13 @@ extension HomeController {
   }
   
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath)
     
-    cell.backgroundColor = .red
+    guard let video = videos?[indexPath.row] else { fatalError() }
+    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as? VideoCell else { fatalError() }
+    
+    let cellVM = VideoCellViewModel(video: video)
+    
+    cell.viewModel = cellVM
     
     return cell
   }
