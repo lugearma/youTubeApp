@@ -24,13 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     appCoordinator = AppCoodinator(window: window)
     appCoordinator?.start()
     
-    //TODO: Remove these lines after use app coodinator
-    
-    
-    
-//    let layout = UICollectionViewFlowLayout()
-//    window.rootViewController = UINavigationController(rootViewController: HomeController(collectionViewLayout: layout))
-    
     return true
   }
 
