@@ -12,15 +12,20 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
-
+  var appCoordinator: AppCoodinator?
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
     window = UIWindow(frame: UIScreen.main.bounds)
-    window?.makeKeyAndVisible()
     
-    let layout = UICollectionViewLayout()
-    window?.rootViewController = UINavigationController(rootViewController: HomeController(collectionViewLayout: layout))
+    guard let window = window else { fatalError() }
+    window.makeKeyAndVisible()
+    
+    // Initialize coordinator
+    appCoordinator = AppCoodinator(window: window)
+    appCoordinator?.start()
+    
+    customizeAppearance(window)
     
     return true
   }
@@ -46,7 +51,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func applicationWillTerminate(_ application: UIApplication) {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
   }
+}
 
-
+extension AppDelegate {
+  
+  func configureRootViewController(_ viewController: UIViewController) {
+    
+  }
 }
 
