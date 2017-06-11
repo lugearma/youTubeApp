@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     appCoordinator = AppCoodinator(window: window)
     appCoordinator?.start()
     
-    customizeAppearance()
+    customizeAppearance(window)
     
     return true
   }

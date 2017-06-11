@@ -15,6 +15,7 @@
 		92294A8E1EEC541600D09883 /* AppCoodinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92294A8D1EEC541600D09883 /* AppCoodinator.swift */; };
 		92294A911EEC650A00D09883 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92294A901EEC650A00D09883 /* UIView.swift */; };
 		92294A931EED13FF00D09883 /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92294A921EED13FF00D09883 /* AppAppearance.swift */; };
+		92294A951EED235700D09883 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92294A941EED235700D09883 /* UIColor.swift */; };
 		925952B61EEB28790050D14F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925952B51EEB28790050D14F /* AppDelegate.swift */; };
 		925952B81EEB28790050D14F /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925952B71EEB28790050D14F /* HomeController.swift */; };
 		925952BD1EEB28790050D14F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 925952BC1EEB28790050D14F /* Assets.xcassets */; };
@@ -31,6 +32,7 @@
 		92294A8D1EEC541600D09883 /* AppCoodinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoodinator.swift; sourceTree = "<group>"; };
 		92294A901EEC650A00D09883 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIView.swift; path = Extensions/UIView.swift; sourceTree = "<group>"; };
 		92294A921EED13FF00D09883 /* AppAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
+		92294A941EED235700D09883 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColor.swift; path = Extensions/UIColor.swift; sourceTree = "<group>"; };
 		925952B21EEB28790050D14F /* YouTubeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTubeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		925952B51EEB28790050D14F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		925952B71EEB28790050D14F /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeController.swift; path = /Users/luisarias/Documents/Desarrollo/iOS/Apps/YouTubeApp/YouTubeApp/YouTubeApp/UI/Home/HomeController.swift; sourceTree = "<absolute>"; };
@@ -64,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				92294A901EEC650A00D09883 /* UIView.swift */,
+				92294A941EED235700D09883 /* UIColor.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92294A911EEC650A00D09883 /* UIView.swift in Sources */,
+				92294A951EED235700D09883 /* UIColor.swift in Sources */,
 				92294A8C1EEC51C300D09883 /* Coordinator.swift in Sources */,
 				925952B81EEB28790050D14F /* HomeController.swift in Sources */,
 				92294A931EED13FF00D09883 /* AppAppearance.swift in Sources */,

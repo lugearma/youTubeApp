@@ -10,7 +10,14 @@ import UIKit
 
 extension AppDelegate {
   
-  func customizeAppearance() {
-    UINavigationBar.appearance().barTintColor = UIColor(red: 230/255, green: 32/250, blue: 31/250, alpha: 1)
+  func customizeAppearance(_ window: UIWindow) {
+    UINavigationBar.appearance().barTintColor = UIColor.rgb(red: 230, green: 32, blue: 31)
+    
+    let statusBarBackgoundView = UIView()
+    statusBarBackgoundView.backgroundColor = UIColor.rgb(red: 194, green: 31, blue: 31)
+    window.addSubview(statusBarBackgoundView)
+    
+    window.addConstraintsWithFormat(format: "H:|[v0]|", view: statusBarBackgoundView)
+    window.addConstraintsWithFormat(format: "V:|[v0(20)]", view: statusBarBackgoundView)
   }
 }
