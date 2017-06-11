@@ -19,6 +19,7 @@ final class HomeController: UICollectionViewController {
     label.frame = labelFrame
     label.textColor = .white
     label.text = "Home"
+    label.font = UIFont.systemFont(ofSize: 20)
     return label
   }()
   
