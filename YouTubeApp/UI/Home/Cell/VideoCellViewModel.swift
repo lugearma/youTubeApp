@@ -12,7 +12,6 @@ import UIKit
 
 protocol VideoCellViewModelProtocol: class {
   
-  var backgroundColor: UIColor { get }
   var videoName: String { get }
   var duration: Int { get }
   
@@ -23,12 +22,10 @@ protocol VideoCellViewModelProtocol: class {
 
 final class VideoCellViewModel: VideoCellViewModelProtocol {
   
-  var backgroundColor: UIColor
   var videoName: String
   var duration: Int
   
   init(video: Video) {
-    self.backgroundColor = .yellow
     self.videoName = video.name
     self.duration = video.duration
   }

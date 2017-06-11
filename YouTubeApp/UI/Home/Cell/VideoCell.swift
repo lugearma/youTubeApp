@@ -30,27 +30,28 @@ final class VideoCell: UICollectionViewCell {
   
   lazy var separatorView: UIView = {
     let view = UIView()
-    view.backgroundColor = .black
     return view
   }()
   
   lazy var titleLabel: UILabel = {
     let label = UILabel()
-    label.backgroundColor = .purple
+    label.text = "Song One by me"
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
   
   lazy var subtitleTextView: UITextView = {
     let textView = UITextView()
-    textView.backgroundColor = .gray
+    textView.text = "lugeBB ● 2,345,532 view ● 2 years ago"
+    textView.textContainerInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0)
+    textView.textColor = .lightGray
     textView.translatesAutoresizingMaskIntoConstraints = false
     return textView
   }()
 
   var viewModel: VideoCellViewModel? {
     didSet {
-      backgroundColor = viewModel?.backgroundColor
+      
     }
   }
   
