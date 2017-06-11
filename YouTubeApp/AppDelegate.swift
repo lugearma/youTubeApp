@@ -21,8 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     guard let window = window else { fatalError() }
     window.makeKeyAndVisible()
     
+    // Initialize coordinator
     appCoordinator = AppCoodinator(window: window)
     appCoordinator?.start()
+    
+    customizeAppearance()
     
     return true
   }

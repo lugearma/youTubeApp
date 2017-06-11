@@ -12,6 +12,13 @@ final class HomeController: UICollectionViewController {
   
   var videos: [Video]?
   
+  lazy var navigationItemLabel: UILabel = {
+    let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 32, height: self.view.frame.height))
+    titleLabel.textColor = .white
+    titleLabel.text = "Hola"
+    return titleLabel
+  }()
+  
   var viewModel: HomeViewModelProtocol? {
     willSet {
       viewModel?.delegate = nil
@@ -24,10 +31,8 @@ final class HomeController: UICollectionViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    navigationItem.title = "Home"
-    collectionView?.backgroundColor = .white
 
+    loadNavigationBar()
     loadCollectionView()
     getVideos()
   }
@@ -35,7 +40,12 @@ final class HomeController: UICollectionViewController {
   func loadCollectionView() {
     collectionView?.delegate = self
     collectionView?.dataSource = self
+    collectionView?.backgroundColor = .white
     collectionView?.register(VideoCell.self, forCellWithReuseIdentifier: VideoCell.identifier)
+  }
+  
+  func loadNavigationBar() {
+    navigationItem.titleView = navigationItemLabel
   }
   
   func getVideos() {

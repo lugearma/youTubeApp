@@ -30,6 +30,7 @@ final class VideoCell: UICollectionViewCell {
   
   lazy var separatorView: UIView = {
     let view = UIView()
+    view.backgroundColor = UIColor(red: 230/250, green: 230/250, blue: 230/250, alpha: 1)
     return view
   }()
   

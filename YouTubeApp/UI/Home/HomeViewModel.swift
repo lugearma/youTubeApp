@@ -6,7 +6,7 @@
 //  Copyright © 2017 Luis Arias. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 // MARK: HomeViewModelDelegate
 

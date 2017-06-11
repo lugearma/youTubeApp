@@ -40,6 +40,8 @@ final class HomeCoordinator: Coordinator {
     
     let navigationController = UINavigationController(rootViewController: homeController)
     
+    navigationController.navigationBar.isTranslucent = false
+    
     return navigationController
   }
 }
