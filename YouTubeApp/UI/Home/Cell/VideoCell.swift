@@ -15,12 +15,16 @@ final class VideoCell: UICollectionViewCell {
   lazy var thumbnailImageView: UIImageView = {
     let imageView = UIImageView()
     imageView.image = UIImage(named: "imageOne")
+    imageView.contentMode = .scaleAspectFill
+    imageView.clipsToBounds = true
     return imageView
   }()
   
   lazy var userProfileImageView: UIImageView = {
     let imageView = UIImageView()
-    imageView.backgroundColor = .green
+    imageView.image = UIImage(named: "img-profile")
+    imageView.layer.cornerRadius = 22
+    imageView.layer.masksToBounds = true
     return imageView
   }()
   
