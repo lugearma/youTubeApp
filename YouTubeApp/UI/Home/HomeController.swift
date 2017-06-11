@@ -13,10 +13,13 @@ final class HomeController: UICollectionViewController {
   var videos: [Video]?
   
   lazy var navigationItemLabel: UILabel = {
-    let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 32, height: self.view.frame.height))
-    titleLabel.textColor = .white
-    titleLabel.text = "Hola"
-    return titleLabel
+    let label = UILabel()
+    let labelFrame = CGRect(x: 0, y: 0, width: self.view.frame.width - 32, height: self.view.frame.height)
+    
+    label.frame = labelFrame
+    label.textColor = .white
+    label.text = "Home"
+    return label
   }()
   
   var viewModel: HomeViewModelProtocol? {
