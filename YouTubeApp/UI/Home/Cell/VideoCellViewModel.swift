@@ -28,7 +28,7 @@ final class VideoCellViewModel: VideoCellViewModelProtocol {
   var duration: Int
   
   init(video: Video) {
-    self.backgroundColor = .blue
+    self.backgroundColor = .yellow
     self.videoName = video.name
     self.duration = video.duration
   }

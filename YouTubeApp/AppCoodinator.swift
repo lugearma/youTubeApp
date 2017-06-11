@@ -52,4 +52,8 @@ extension AppCoodinator: HomeCoordinatorDelegate {
     coordinator.delegate = self
     coordinator.start()
   }
+  
+  //TODO: Implement this method when finish home view controller presentation
+  func homeCoordinatorDidFinish(coordinator: Coordinator) {
+  }
 }

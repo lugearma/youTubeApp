@@ -12,7 +12,7 @@ import UIKit
 
 protocol HomeCoordinatorDelegate: class {
   
-  
+  func homeCoordinatorDidFinish(coordinator: Coordinator)
 }
 
 // MARK: - HomeCoordinator
