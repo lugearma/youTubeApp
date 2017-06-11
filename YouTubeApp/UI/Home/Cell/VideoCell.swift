@@ -14,7 +14,7 @@ final class VideoCell: UICollectionViewCell {
 
   lazy var thumbnailImageView: UIImageView = {
     let imageView = UIImageView()
-    imageView.backgroundColor = .red
+    imageView.image = UIImage(named: "imageOne")
     return imageView
   }()
   
