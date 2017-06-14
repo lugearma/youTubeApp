@@ -10,7 +10,7 @@ import UIKit
 
 final class HomeController: UICollectionViewController {
   
-  var videos: [Video]?
+  fileprivate var videos: [Video]?
   
   lazy var navigationItemLabel: UILabel = {
     let label = UILabel()
@@ -21,6 +21,18 @@ final class HomeController: UICollectionViewController {
     label.text = "Home"
     label.font = UIFont.systemFont(ofSize: 20)
     return label
+  }()
+  
+  lazy var navigationBarButtons: [UIBarButtonItem] = {
+    let searchImage = UIImage(named: "ico-search")?.withRenderingMode(.alwaysOriginal)
+    let menuImage = UIImage(named: "ico-menu")?.withRenderingMode(.alwaysOriginal)
+    
+    let searchBarButtonItem = UIBarButtonItem(image: searchImage, style: .plain, target: self, action: #selector(handleSearch))
+    let menuBarButtonItem = UIBarButtonItem(image: menuImage, style: .plain, target: self, action: #selector(handleMenu))
+    
+    let navigationbarButtons = [searchBarButtonItem, menuBarButtonItem]
+    
+    return navigationbarButtons
   }()
   
   // TODO: Change type when pod is ready
@@ -49,7 +61,7 @@ final class HomeController: UICollectionViewController {
     getVideos()
   }
   
-  func loadCollectionView() {
+  fileprivate func loadCollectionView() {
     collectionView?.delegate = self
     collectionView?.dataSource = self
     collectionView?.backgroundColor = .white
@@ -58,22 +70,27 @@ final class HomeController: UICollectionViewController {
     collectionView?.register(VideoCell.self, forCellWithReuseIdentifier: VideoCell.identifier)
   }
   
-  func loadNavigationBar() {
+  fileprivate func loadNavigationBar() {
     navigationItem.titleView = navigationItemLabel
+    navigationItem.rightBarButtonItems = navigationBarButtons
   }
   
-  func loadMenuBar() {
+  fileprivate func loadMenuBar() {
     view.addSubview(menuBar)
     
     view.addConstraintsWithFormat(format: "H:|[v0]|", view: menuBar)
     view.addConstraintsWithFormat(format: "V:|[v0(50)]", view: menuBar)
   }
   
-  func getVideos() {
+  fileprivate func getVideos() {
     guard let viewModel = viewModel else { fatalError() }
     
     videos = viewModel.getVideos()
   }
+  
+  func handleSearch() {}
+  
+  func handleMenu() {}
 }
 
 // MARK: - UICollectionViewDataSource
