@@ -23,6 +23,13 @@ final class HomeController: UICollectionViewController {
     return label
   }()
   
+  // TODO: Change type when pod is ready
+  lazy var menuBar: UIView = {
+    let menuBar = UIView()
+    menuBar.backgroundColor = UIColor.BaseColor.mainRed
+    return menuBar
+  }()
+  
   var viewModel: HomeViewModelProtocol? {
     willSet {
       viewModel?.delegate = nil
@@ -38,6 +45,7 @@ final class HomeController: UICollectionViewController {
 
     loadNavigationBar()
     loadCollectionView()
+    loadMenuBar()
     getVideos()
   }
   
@@ -45,11 +53,20 @@ final class HomeController: UICollectionViewController {
     collectionView?.delegate = self
     collectionView?.dataSource = self
     collectionView?.backgroundColor = .white
+    collectionView?.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
+    collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
     collectionView?.register(VideoCell.self, forCellWithReuseIdentifier: VideoCell.identifier)
   }
   
   func loadNavigationBar() {
     navigationItem.titleView = navigationItemLabel
+  }
+  
+  func loadMenuBar() {
+    view.addSubview(menuBar)
+    
+    view.addConstraintsWithFormat(format: "H:|[v0]|", view: menuBar)
+    view.addConstraintsWithFormat(format: "V:|[v0(50)]", view: menuBar)
   }
   
   func getVideos() {

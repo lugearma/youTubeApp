@@ -5,5 +5,6 @@ use_frameworks!
 target 'YouTubeApp' do
 
   pod 'Alamofire', '~> 4.4'
+  pod 'LAMenuBar', :git => 'https://github.com/lugearma/LAMenuBar.git'
 
 end

@@ -11,10 +11,12 @@ import UIKit
 extension AppDelegate {
   
   func customizeAppearance(_ window: UIWindow) {
-    UINavigationBar.appearance().barTintColor = UIColor.rgb(red: 230, green: 32, blue: 31)
+    UINavigationBar.appearance().barTintColor = UIColor.BaseColor.mainRed
+    UINavigationBar.appearance().shadowImage = UIImage()
+    UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
     
     let statusBarBackgoundView = UIView()
-    statusBarBackgoundView.backgroundColor = UIColor.rgb(red: 194, green: 31, blue: 31)
+    statusBarBackgoundView.backgroundColor = UIColor.BaseColor.statusBarRed
     window.addSubview(statusBarBackgoundView)
     
     window.addConstraintsWithFormat(format: "H:|[v0]|", view: statusBarBackgoundView)
