@@ -30,9 +30,8 @@ final class HomeViewModel: HomeViewModelProtocol {
   // FIXME: Don't return nothing when this function gets connected with BE
   func getVideos() -> [Video] {
     let videos = [
-      Video(name: "Video 1", duration: 12, description: "This's video one"),
-      Video(name: "Video 2", duration: 12, description: "This's video two"),
-      Video(name: "Video 3", duration: 12, description: "This's video three")
+      Video(name: "Video 1", duration: 12, channel: Channel(name: "Stranbo", profileImageName: "img-profile-two"), imageName: "imgThree"),
+      Video(name: "Video 1", duration: 12, channel: Channel(name: "Lola", profileImageName: "img-profile"), imageName: "imageOne")
     ]
     
     return videos

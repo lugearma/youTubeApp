@@ -34,7 +34,7 @@ final class VideoCell: BaseCell {
     return view
   }()
   
-  lazy var titleLabel: UILabel = {
+  lazy var nameVideoLabel: UILabel = {
     let label = UILabel()
     label.text = "Song One by me"
     label.translatesAutoresizingMaskIntoConstraints = false
@@ -52,7 +52,9 @@ final class VideoCell: BaseCell {
 
   var viewModel: VideoCellViewModel? {
     didSet {
-      
+      nameVideoLabel.text = viewModel?.videoName
+      userProfileImageView.image = viewModel?.profileImage
+      thumbnailImageView.image = viewModel?.thumbnailVideoImage
     }
   }
   
@@ -62,7 +64,7 @@ final class VideoCell: BaseCell {
     addSubview(thumbnailImageView)
     addSubview(userProfileImageView)
     addSubview(separatorView)
-    addSubview(titleLabel)
+    addSubview(nameVideoLabel)
     addSubview(subtitleTextView)
     
     // Horizontal Constraints
@@ -74,19 +76,19 @@ final class VideoCell: BaseCell {
     addConstraintsWithFormat(format: "V:|-16-[v0]-8-[v1(44)]-16-[v2(1)]|", view: thumbnailImageView, userProfileImageView, separatorView)
     
     // Top Contraints
-    addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .top, relatedBy: .equal, toItem: thumbnailImageView, attribute: .bottom, multiplier: 1, constant: 8))
-    addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .top, relatedBy: .equal, toItem: titleLabel, attribute: .bottom, multiplier: 1, constant: 4))
+    addConstraint(NSLayoutConstraint(item: nameVideoLabel, attribute: .top, relatedBy: .equal, toItem: thumbnailImageView, attribute: .bottom, multiplier: 1, constant: 8))
+    addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .top, relatedBy: .equal, toItem: nameVideoLabel, attribute: .bottom, multiplier: 1, constant: 4))
     
     // Left Constraints
-    addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .left, relatedBy: .equal, toItem: userProfileImageView, attribute: .right, multiplier: 1, constant: 8))
+    addConstraint(NSLayoutConstraint(item: nameVideoLabel, attribute: .left, relatedBy: .equal, toItem: userProfileImageView, attribute: .right, multiplier: 1, constant: 8))
     addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .left, relatedBy: .equal, toItem: userProfileImageView, attribute: .right, multiplier: 1, constant: 8))
     
     //Right Constraints
-    addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .right, relatedBy: .equal, toItem: thumbnailImageView, attribute: .right, multiplier: 1, constant: 0))
+    addConstraint(NSLayoutConstraint(item: nameVideoLabel, attribute: .right, relatedBy: .equal, toItem: thumbnailImageView, attribute: .right, multiplier: 1, constant: 0))
     addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .right, relatedBy: .equal, toItem: thumbnailImageView, attribute: .right, multiplier: 1, constant: 0))
     
     //Height Constraints
-    addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 20))
+    addConstraint(NSLayoutConstraint(item: nameVideoLabel, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 20))
     addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 30))
   }
 }

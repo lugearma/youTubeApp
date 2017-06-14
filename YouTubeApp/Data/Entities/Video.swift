@@ -6,17 +6,21 @@
 //  Copyright © 2017 Luis Arias. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct Video {
   
   let name: String
   let duration: Int
-  let description: String
+  let channel: Channel
+  let thumbnailImage: UIImage?
   
-  init(name: String, duration: Int, description: String) {
+  init(name: String, duration: Int, channel: Channel, imageName: String) {
     self.name = name
     self.duration = duration
-    self.description = description
+    self.channel = channel
+    
+    let thumbnailImage = UIImage(named: imageName)
+    self.thumbnailImage = thumbnailImage
   }
 }
