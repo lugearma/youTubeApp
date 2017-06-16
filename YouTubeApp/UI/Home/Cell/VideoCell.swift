@@ -55,6 +55,7 @@ final class VideoCell: BaseCell {
       nameVideoLabel.text = viewModel?.videoName
       userProfileImageView.image = viewModel?.profileImage
       thumbnailImageView.image = viewModel?.thumbnailVideoImage
+      subtitleTextView.text = viewModel?.subtitle
     }
   }
   
