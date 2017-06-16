@@ -12,12 +12,11 @@ import UIKit
 
 protocol VideoCellViewModelProtocol: class {
   
-  var videoName: String { get }
+  var videoTitle: String { get }
   var subtitle: String { get }
   var thumbnailVideoImage: UIImage? { get }
   var profileImage: UIImage? { get }
   var duration: Int { get }
-  
   
   init(video: Video)
 }
@@ -26,14 +25,14 @@ protocol VideoCellViewModelProtocol: class {
 
 final class VideoCellViewModel: VideoCellViewModelProtocol {
   
-  let videoName: String
+  let videoTitle: String
   let subtitle: String
   let thumbnailVideoImage: UIImage?
   let profileImage: UIImage?
   let duration: Int
   
   init(video: Video) {
-    self.videoName = video.name
+    self.videoTitle = video.name
     self.duration = video.duration
     self.thumbnailVideoImage = video.thumbnailImage
     self.profileImage = video.channel.profileImage
