@@ -12,13 +12,23 @@ final class BaseSettingLauncher: NSObject {
   
   let blackView = UIView()
   
+  lazy var collectionView: UICollectionView = {
+    let layout = UICollectionViewFlowLayout()
+    let collectioView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    collectioView.backgroundColor = .white
+    return collectioView
+  }()
+  
+  var window: UIWindow {
+    guard let window = UIApplication.shared.keyWindow else { fatalError() }
+    return window
+  }
+  
   override init() {
     super.init()
   }
   
   func showSettings() {
-    
-    guard let window = UIApplication.shared.keyWindow else { fatalError() }
     
     blackView.frame = window.frame
     blackView.backgroundColor = .black
@@ -28,21 +38,28 @@ final class BaseSettingLauncher: NSObject {
     blackView.addGestureRecognizer(gesture)
     
     window.addSubview(blackView)
+    window.addSubview(collectionView)
     
-    UIView.animate(withDuration: 0.5) {
+    let height: CGFloat = 200
+    let y = window.frame.height - height
+    self.collectionView.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: height)
+    
+    UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
       self.blackView.alpha = 0.5
-    }
+      self.collectionView.frame = CGRect(x: 0, y: y, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
+    }, completion: nil)
   }
   
   func handleDismiss() {
-    UIView.animate(withDuration: 0.5, animations: {
-      UIView.animate(withDuration: 0.5) {
-        self.blackView.alpha = 0.0
-      }
-    }) { completion in
-      
-      guard let window = UIApplication.shared.keyWindow else { fatalError() }
-      window.willRemoveSubview(self.blackView)
-    }
+    
+    UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut,
+                   animations: {
+                    self.blackView.alpha = 0.0
+                    self.collectionView.frame = CGRect(x: 0, y: self.window.frame.height, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
+    },
+                   completion: {_ in
+                    self.blackView.removeFromSuperview()
+                    self.collectionView.removeFromSuperview()
+    })
   }
 }
