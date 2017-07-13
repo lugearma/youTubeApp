@@ -12,6 +12,7 @@ final class HomeController: UICollectionViewController {
   
   fileprivate var videos: [Video]?
   private let blackView = UIView()
+  private let settingsLauncher = BaseSettingLauncher()
   
   private lazy var navigationItemLabel: UILabel = {
     let label = UILabel()
@@ -92,34 +93,7 @@ final class HomeController: UICollectionViewController {
   func handleSearch() {}
   
   func handleMenu() {
-    
-    guard let window = UIApplication.shared.keyWindow else { fatalError() }
-    
-    
-    blackView.frame = window.frame
-    blackView.backgroundColor = .black
-    blackView.alpha = 0
-    
-    let gesture = UITapGestureRecognizer(target: self, action: #selector(handleDismiss))
-    blackView.addGestureRecognizer(gesture)
-    
-    window.addSubview(blackView)
-    
-    UIView.animate(withDuration: 0.5) {
-      self.blackView.alpha = 0.5
-    }
-  }
-  
-  func handleDismiss() {
-    UIView.animate(withDuration: 0.5, animations: {
-      UIView.animate(withDuration: 0.5) {
-      self.blackView.alpha = 0.0
-      }
-    }) { completion in
-      
-      guard let window = UIApplication.shared.keyWindow else { fatalError() }
-      window.willRemoveSubview(self.blackView)
-    }
+    settingsLauncher.showSettings()
   }
 }
 
