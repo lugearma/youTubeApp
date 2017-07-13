@@ -11,8 +11,9 @@ import UIKit
 final class HomeController: UICollectionViewController {
   
   fileprivate var videos: [Video]?
+  private let blackView = UIView()
   
-  lazy var navigationItemLabel: UILabel = {
+  private lazy var navigationItemLabel: UILabel = {
     let label = UILabel()
     let labelFrame = CGRect(x: 0, y: 0, width: self.view.frame.width - 32, height: self.view.frame.height)
     
@@ -23,20 +24,20 @@ final class HomeController: UICollectionViewController {
     return label
   }()
   
-  lazy var navigationBarButtons: [UIBarButtonItem] = {
+  private lazy var navigationBarButtons: [UIBarButtonItem] = {
     let searchImage = UIImage(named: "ico-search")?.withRenderingMode(.alwaysOriginal)
     let menuImage = UIImage(named: "ico-menu")?.withRenderingMode(.alwaysOriginal)
     
     let searchBarButtonItem = UIBarButtonItem(image: searchImage, style: .plain, target: self, action: #selector(handleSearch))
     let menuBarButtonItem = UIBarButtonItem(image: menuImage, style: .plain, target: self, action: #selector(handleMenu))
     
-    let navigationbarButtons = [searchBarButtonItem, menuBarButtonItem]
+    let navigationbarButtons = [menuBarButtonItem, searchBarButtonItem]
     
     return navigationbarButtons
   }()
   
   // TODO: Change type when pod is ready
-  lazy var menuBar: UIView = {
+  private lazy var menuBar: UIView = {
     let menuBar = UIView()
     menuBar.backgroundColor = UIColor.BaseColor.mainRed
     return menuBar
@@ -61,7 +62,7 @@ final class HomeController: UICollectionViewController {
     getVideos()
   }
   
-  fileprivate func loadCollectionView() {
+  private func loadCollectionView() {
     collectionView?.delegate = self
     collectionView?.dataSource = self
     collectionView?.backgroundColor = .white
@@ -70,7 +71,7 @@ final class HomeController: UICollectionViewController {
     collectionView?.register(VideoCell.self, forCellWithReuseIdentifier: VideoCell.identifier)
   }
   
-  fileprivate func loadNavigationBar() {
+  private func loadNavigationBar() {
     navigationItem.titleView = navigationItemLabel
     navigationItem.rightBarButtonItems = navigationBarButtons
   }
@@ -90,7 +91,36 @@ final class HomeController: UICollectionViewController {
   
   func handleSearch() {}
   
-  func handleMenu() {}
+  func handleMenu() {
+    
+    guard let window = UIApplication.shared.keyWindow else { fatalError() }
+    
+    
+    blackView.frame = window.frame
+    blackView.backgroundColor = .black
+    blackView.alpha = 0
+    
+    let gesture = UITapGestureRecognizer(target: self, action: #selector(handleDismiss))
+    blackView.addGestureRecognizer(gesture)
+    
+    window.addSubview(blackView)
+    
+    UIView.animate(withDuration: 0.5) {
+      self.blackView.alpha = 0.5
+    }
+  }
+  
+  func handleDismiss() {
+    UIView.animate(withDuration: 0.5, animations: {
+      UIView.animate(withDuration: 0.5) {
+      self.blackView.alpha = 0.0
+      }
+    }) { completion in
+      
+      guard let window = UIApplication.shared.keyWindow else { fatalError() }
+      window.willRemoveSubview(self.blackView)
+    }
+  }
 }
 
 // MARK: - UICollectionViewDataSource
