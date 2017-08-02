@@ -73,15 +73,27 @@ final class HomeController: UICollectionViewController {
   }
   
   private func loadNavigationBar() {
+    navigationController?.hidesBarsOnSwipe = true
     navigationItem.titleView = navigationItemLabel
     navigationItem.rightBarButtonItems = navigationBarButtons
   }
   
   fileprivate func loadMenuBar() {
-    view.addSubview(menuBar)
     
+    let redView = UIView()
+    redView.backgroundColor = UIColor.BaseColor.mainRed
+    
+    //Contraints for redView
+    view.addSubview(redView)
+    view.addConstraintsWithFormat(format: "H:|[v0]|", view: redView)
+    view.addConstraintsWithFormat(format: "V:[v0(50)]", view: redView)
+    
+    // Constraints for menuBar
+    view.addSubview(menuBar)
     view.addConstraintsWithFormat(format: "H:|[v0]|", view: menuBar)
-    view.addConstraintsWithFormat(format: "V:|[v0(50)]", view: menuBar)
+    view.addConstraintsWithFormat(format: "V:[v0(50)]", view: menuBar)
+    
+    menuBar.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
   }
   
   fileprivate func getVideos() {

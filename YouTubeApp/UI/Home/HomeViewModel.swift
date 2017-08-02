@@ -31,6 +31,10 @@ final class HomeViewModel: HomeViewModelProtocol {
   func getVideos() -> [Video] {
     let videos = [
       Video(name: "Video 1sdfsdfsdfsdfsdfsdfsdfds", duration: 12, channel: Channel(name: "Stranbo", profileImageName: "img-profile-two"), imageName: "imgThree", numberOfViews: 122342, uploadDate: "2 months ago"),
+      Video(name: "Video 2", duration: 12, channel: Channel(name: "Lola", profileImageName: "img-profile"), imageName: "imageOne", numberOfViews: 122342, uploadDate: "3 weeks ago"),
+      Video(name: "Video 1sdfsdfsdfsdfsdfsdfsdfds", duration: 12, channel: Channel(name: "Stranbo", profileImageName: "img-profile-two"), imageName: "imgThree", numberOfViews: 122342, uploadDate: "2 months ago"),
+      Video(name: "Video 2", duration: 12, channel: Channel(name: "Lola", profileImageName: "img-profile"), imageName: "imageOne", numberOfViews: 122342, uploadDate: "3 weeks ago"),
+      Video(name: "Video 1sdfsdfsdfsdfsdfsdfsdfds", duration: 12, channel: Channel(name: "Stranbo", profileImageName: "img-profile-two"), imageName: "imgThree", numberOfViews: 122342, uploadDate: "2 months ago"),
       Video(name: "Video 2", duration: 12, channel: Channel(name: "Lola", profileImageName: "img-profile"), imageName: "imageOne", numberOfViews: 122342, uploadDate: "3 weeks ago")
     ]
     

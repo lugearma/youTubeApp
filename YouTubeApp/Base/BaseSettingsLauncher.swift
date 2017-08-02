@@ -12,7 +12,7 @@ final class BaseSettingLauncher: NSObject {
   
   let blackView = UIView()
   
-  lazy var collectionView: UICollectionView = {
+  let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     let collectioView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectioView.backgroundColor = .white
@@ -26,6 +26,14 @@ final class BaseSettingLauncher: NSObject {
   
   override init() {
     super.init()
+    
+    loadCollectionView()
+  }
+  
+  private func loadCollectionView() {
+    collectionView.dataSource = self
+    collectionView.delegate = self
+    collectionView.register(BaseSettingsLauncherCell.self, forCellWithReuseIdentifier: BaseSettingsLauncherCell.identifier)
   }
   
   func showSettings() {
@@ -62,4 +70,23 @@ final class BaseSettingLauncher: NSObject {
                     self.collectionView.removeFromSuperview()
     })
   }
+}
+
+extension BaseSettingLauncher: UICollectionViewDataSource {
+  
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return 3
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BaseSettingsLauncherCell.identifier, for: indexPath) as? BaseSettingsLauncherCell else {
+      fatalError("Can't dequeue cell")
+    }
+    
+    return cell
+  }
+}
+
+extension BaseSettingLauncher: UICollectionViewDelegateFlowLayout {
+  
 }
