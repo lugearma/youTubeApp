@@ -11,8 +11,10 @@ import UIKit
 final class HomeController: UICollectionViewController {
   
   fileprivate var videos: [Video]?
+  private let blackView = UIView()
+  private let settingsLauncher = BaseSettingLauncher()
   
-  lazy var navigationItemLabel: UILabel = {
+  private lazy var navigationItemLabel: UILabel = {
     let label = UILabel()
     let labelFrame = CGRect(x: 0, y: 0, width: self.view.frame.width - 32, height: self.view.frame.height)
     
@@ -23,20 +25,20 @@ final class HomeController: UICollectionViewController {
     return label
   }()
   
-  lazy var navigationBarButtons: [UIBarButtonItem] = {
+  private lazy var navigationBarButtons: [UIBarButtonItem] = {
     let searchImage = UIImage(named: "ico-search")?.withRenderingMode(.alwaysOriginal)
     let menuImage = UIImage(named: "ico-menu")?.withRenderingMode(.alwaysOriginal)
     
     let searchBarButtonItem = UIBarButtonItem(image: searchImage, style: .plain, target: self, action: #selector(handleSearch))
     let menuBarButtonItem = UIBarButtonItem(image: menuImage, style: .plain, target: self, action: #selector(handleMenu))
     
-    let navigationbarButtons = [searchBarButtonItem, menuBarButtonItem]
+    let navigationbarButtons = [menuBarButtonItem, searchBarButtonItem]
     
     return navigationbarButtons
   }()
   
   // TODO: Change type when pod is ready
-  lazy var menuBar: UIView = {
+  private lazy var menuBar: UIView = {
     let menuBar = UIView()
     menuBar.backgroundColor = UIColor.BaseColor.mainRed
     return menuBar
@@ -61,7 +63,7 @@ final class HomeController: UICollectionViewController {
     getVideos()
   }
   
-  fileprivate func loadCollectionView() {
+  private func loadCollectionView() {
     collectionView?.delegate = self
     collectionView?.dataSource = self
     collectionView?.backgroundColor = .white
@@ -70,16 +72,28 @@ final class HomeController: UICollectionViewController {
     collectionView?.register(VideoCell.self, forCellWithReuseIdentifier: VideoCell.identifier)
   }
   
-  fileprivate func loadNavigationBar() {
+  private func loadNavigationBar() {
+    navigationController?.hidesBarsOnSwipe = true
     navigationItem.titleView = navigationItemLabel
     navigationItem.rightBarButtonItems = navigationBarButtons
   }
   
   fileprivate func loadMenuBar() {
-    view.addSubview(menuBar)
     
+    let redView = UIView()
+    redView.backgroundColor = UIColor.BaseColor.mainRed
+    
+    //Contraints for redView
+    view.addSubview(redView)
+    view.addConstraintsWithFormat(format: "H:|[v0]|", view: redView)
+    view.addConstraintsWithFormat(format: "V:[v0(50)]", view: redView)
+    
+    // Constraints for menuBar
+    view.addSubview(menuBar)
     view.addConstraintsWithFormat(format: "H:|[v0]|", view: menuBar)
-    view.addConstraintsWithFormat(format: "V:|[v0(50)]", view: menuBar)
+    view.addConstraintsWithFormat(format: "V:[v0(50)]", view: menuBar)
+    
+    menuBar.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
   }
   
   fileprivate func getVideos() {
@@ -90,7 +104,9 @@ final class HomeController: UICollectionViewController {
   
   func handleSearch() {}
   
-  func handleMenu() {}
+  func handleMenu() {
+    settingsLauncher.showSettings()
+  }
 }
 
 // MARK: - UICollectionViewDataSource
@@ -124,7 +140,7 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     let height = (collectionView.frame.width - 32) * 9/16
-    return CGSize(width: collectionView.frame.width, height: height + 16 + 68)
+    return CGSize(width: collectionView.frame.width, height: height + 16 + 88)
   }
 }
 

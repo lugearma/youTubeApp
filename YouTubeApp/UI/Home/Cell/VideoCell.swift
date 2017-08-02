@@ -36,8 +36,8 @@ final class VideoCell: BaseCell {
   
   lazy var nameVideoLabel: UILabel = {
     let label = UILabel()
-    label.text = "Song One by me"
     label.translatesAutoresizingMaskIntoConstraints = false
+    label.numberOfLines = 2
     return label
   }()
   
@@ -49,12 +49,17 @@ final class VideoCell: BaseCell {
     textView.translatesAutoresizingMaskIntoConstraints = false
     return textView
   }()
+  
+  var titleLabelConstraint: NSLayoutConstraint?
 
   var viewModel: VideoCellViewModel? {
     didSet {
-      nameVideoLabel.text = viewModel?.videoName
+      nameVideoLabel.text = viewModel?.videoTitle
       userProfileImageView.image = viewModel?.profileImage
       thumbnailImageView.image = viewModel?.thumbnailVideoImage
+      subtitleTextView.text = viewModel?.subtitle
+      
+      resizeTitleLabelHeightIfNedded()
     }
   }
   
@@ -73,7 +78,7 @@ final class VideoCell: BaseCell {
     addConstraintsWithFormat(format: "H:|[v0]|", view: separatorView)
     
     // Vertical Contraints
-    addConstraintsWithFormat(format: "V:|-16-[v0]-8-[v1(44)]-16-[v2(1)]|", view: thumbnailImageView, userProfileImageView, separatorView)
+    addConstraintsWithFormat(format: "V:|-16-[v0]-8-[v1(44)]-36-[v2(1)]|", view: thumbnailImageView, userProfileImageView, separatorView)
     
     // Top Contraints
     addConstraint(NSLayoutConstraint(item: nameVideoLabel, attribute: .top, relatedBy: .equal, toItem: thumbnailImageView, attribute: .bottom, multiplier: 1, constant: 8))
@@ -88,7 +93,21 @@ final class VideoCell: BaseCell {
     addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .right, relatedBy: .equal, toItem: thumbnailImageView, attribute: .right, multiplier: 1, constant: 0))
     
     //Height Constraints
-    addConstraint(NSLayoutConstraint(item: nameVideoLabel, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 20))
+    titleLabelConstraint = NSLayoutConstraint(item: nameVideoLabel, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 20)
+    addConstraint(self.titleLabelConstraint!)
     addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 30))
+  }
+  
+  fileprivate func resizeTitleLabelHeightIfNedded() {
+    
+    guard let videoTitle = viewModel?.videoTitle else { return }
+    
+    let size = CGSize(width: frame.width - 16 - 44 - 8 - 16, height: 1000)
+    let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+    let estimatedRect = NSString(string: videoTitle).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14)], context: nil)
+    
+    if estimatedRect.size.height > 20 {
+      titleLabelConstraint?.constant = 44
+    }
   }
 }
