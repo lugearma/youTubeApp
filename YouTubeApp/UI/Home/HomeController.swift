@@ -81,13 +81,11 @@ final class HomeController: UIViewController {
     
     let views = [fV, sV, tV, foV]
     
-    // Create a model which has the information to present
-    let model = LAMenuModel(images: [UIImage(named: "home"), UIImage(named: "trending"), UIImage(named: "subscriptions"), UIImage(named: "account")], backgroundColor: UIColor.BaseColor.mainRed, barColor: .white, tintColorWhenSelected: .white, tintColorWhenDiselected: UIColor.BaseColor.strongRed, views: views)
+    let images = [UIImage(named: "home"), UIImage(named: "trending"), UIImage(named: "subscriptions"), UIImage(named: "account")]
+    let model = LAMenuModel(images: images, backgroundColor: UIColor.BaseColor.mainRed, barColor: .white, tintColorWhenSelected: .white, tintColorWhenDiselected: UIColor.BaseColor.strongRed, views: views)
     
-    // Create LAMenuView and add to your view
     let menuView = LAMenuView()
     
-    // Set the model
     menuView.model = model
     
     view.addSubview(menuView)
