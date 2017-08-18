@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.4.0)
+  - Alamofire (4.5.0)
   - LAMenuBar (0.1.0)
 
 DEPENDENCIES:
@@ -12,13 +12,13 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   LAMenuBar:
-    :commit: 7850f586a909edd183c1ca1e1e5a4d9ab34b5103
+    :commit: 5401da2b3d4315dc161789c61fe2e2dd298bb0be
     :git: https://github.com/lugearma/LAMenuBar.git
 
 SPEC CHECKSUMS:
-  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
-  LAMenuBar: e334a8989c3aa86d95993c31df6aaca31028be08
+  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  LAMenuBar: 591d2392ed858ece5b92b94f14715e13151ed899
 
-PODFILE CHECKSUM: cf6eeddc0b65518bb70558549bfc6296ebd3914a
+PODFILE CHECKSUM: aa7a6af8b7c9139448ffa0e8498dcd134d624314
 
 COCOAPODS: 1.2.1

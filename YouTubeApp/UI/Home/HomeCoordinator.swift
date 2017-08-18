@@ -34,8 +34,11 @@ final class HomeCoordinator: Coordinator {
   
   func configureHomeViewController() -> UINavigationController {
     
-    let layout = UICollectionViewFlowLayout()
-    let homeController = HomeController(collectionViewLayout: layout)
+//    let layout = UICollectionViewFlowLayout()
+//    layout.scrollDirection = .horizontal
+//    layout.minimumLineSpacing = 0
+    
+    let homeController = HomeController()
     homeController.viewModel = HomeViewModel()
     
     let navigationController = UINavigationController(rootViewController: homeController)
