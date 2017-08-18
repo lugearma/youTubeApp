@@ -16,7 +16,7 @@ extension AppDelegate {
     UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
     
     let statusBarBackgoundView = UIView()
-    statusBarBackgoundView.backgroundColor = UIColor.BaseColor.statusBarRed
+    statusBarBackgoundView.backgroundColor = UIColor.BaseColor.strongRed
     window.addSubview(statusBarBackgoundView)
     
     window.addConstraintsWithFormat(format: "H:|[v0]|", view: statusBarBackgoundView)

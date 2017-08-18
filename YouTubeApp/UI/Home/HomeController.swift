@@ -24,7 +24,6 @@ final class HomeController: UIViewController {
     label.frame = labelFrame
     label.textColor = .white
     label.text = "Home"
-    label.backgroundColor = .blue
     label.font = UIFont.systemFont(ofSize: 20)
     return label
   }()
@@ -63,7 +62,6 @@ final class HomeController: UIViewController {
 
     setupNavigationBar()
     setupLAMenuBarView()
-//    setupMenuBar()
     getVideos()
   }
   
@@ -84,7 +82,7 @@ final class HomeController: UIViewController {
     let views = [fV, sV, tV, foV]
     
     // Create a model which has the information to present
-    let model = LAMenuModel(images: [UIImage(named: "home"), UIImage(named: "trending"), UIImage(named: "subscriptions"), UIImage(named: "account")], backgroundColor: .white, barColor: .black, tintColorWhenSelected: .black, tintColorWhenDiselected: .lightGray, views: views)
+    let model = LAMenuModel(images: [UIImage(named: "home"), UIImage(named: "trending"), UIImage(named: "subscriptions"), UIImage(named: "account")], backgroundColor: UIColor.BaseColor.mainRed, barColor: .white, tintColorWhenSelected: .white, tintColorWhenDiselected: UIColor.BaseColor.strongRed, views: views)
     
     // Create LAMenuView and add to your view
     let menuView = LAMenuView()
@@ -102,24 +100,6 @@ final class HomeController: UIViewController {
     navigationController?.hidesBarsOnSwipe = true
     navigationItem.titleView = navigationItemLabel
     navigationItem.rightBarButtonItems = navigationBarButtons
-  }
-  
-  fileprivate func setupMenuBar() {
-    
-    let redView = UIView()
-    redView.backgroundColor = UIColor.BaseColor.mainRed
-    
-    //Contraints for redView
-    view.addSubview(redView)
-    view.addConstraintsWithFormat(format: "H:|[v0]|", view: redView)
-    view.addConstraintsWithFormat(format: "V:[v0(50)]", view: redView)
-    
-    // Constraints for menuBar
-    view.addSubview(menuBar)
-    view.addConstraintsWithFormat(format: "H:|[v0]|", view: menuBar)
-    view.addConstraintsWithFormat(format: "V:[v0(50)]", view: menuBar)
-    
-    menuBar.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
   }
   
   fileprivate func getVideos() {
