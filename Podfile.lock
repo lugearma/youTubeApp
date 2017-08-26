@@ -1,24 +1,32 @@
 PODS:
   - Alamofire (4.5.0)
   - LAMenuBar (0.1.0)
+  - LASettingsLauncherMenu (0.1.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
   - LAMenuBar (from `https://github.com/lugearma/LAMenuBar.git`)
+  - LASettingsLauncherMenu (from `https://github.com/lugearma/LASettingsLauncherMenu.git`)
 
 EXTERNAL SOURCES:
   LAMenuBar:
     :git: https://github.com/lugearma/LAMenuBar.git
+  LASettingsLauncherMenu:
+    :git: https://github.com/lugearma/LASettingsLauncherMenu.git
 
 CHECKOUT OPTIONS:
   LAMenuBar:
     :commit: 5401da2b3d4315dc161789c61fe2e2dd298bb0be
     :git: https://github.com/lugearma/LAMenuBar.git
+  LASettingsLauncherMenu:
+    :commit: b3d06bb7c2681a7331ce01580646956178e3588f
+    :git: https://github.com/lugearma/LASettingsLauncherMenu.git
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   LAMenuBar: 591d2392ed858ece5b92b94f14715e13151ed899
+  LASettingsLauncherMenu: 3096d2d31c9f0466f3e19174b4e5b4ee087166a7
 
-PODFILE CHECKSUM: aa7a6af8b7c9139448ffa0e8498dcd134d624314
+PODFILE CHECKSUM: 29a63777c9bcfffb930af4602116615ed41617f1
 
 COCOAPODS: 1.2.1

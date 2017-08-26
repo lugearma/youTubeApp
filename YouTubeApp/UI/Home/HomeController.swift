@@ -8,11 +8,13 @@
 
 import UIKit
 import LAMenuBar
+import LASettingsLauncherMenu
 
 final class HomeController: UIViewController {
   
   private let blackView = UIView()
-  private let settingsLauncher = BaseSettingLauncher()
+//  private let settingsLauncher = BaseSettingLauncher()
+  private let settingsLauncher = LASettingsLauncherMenu()
   
   fileprivate var videos: [Video]?
   
@@ -62,6 +64,12 @@ final class HomeController: UIViewController {
     setupNavigationBar()
     setupLAMenuBarView()
     getVideos()
+    configureSettingLauncher()
+  }
+  
+  private func configureSettingLauncher() {
+    settingsLauncher.delegate = self
+    settingsLauncher.dataSource = self
   }
   
   private func setupLAMenuBarView() {
@@ -110,7 +118,7 @@ final class HomeController: UIViewController {
   }
   
   func handleMenu() {
-    settingsLauncher.showSettings()
+    settingsLauncher.showSettingMenu()
   }
 }
 
@@ -118,5 +126,46 @@ final class HomeController: UIViewController {
 
 extension HomeController: HomeViewModelDelegate {
   
+}
+
+// MARK: - LASettingsLauncherMenuDelegate
+
+extension HomeController: LASettingsLauncherMenuDelegate {
+  
+  func didHideMenu(_ menu: LASettingsLauncherMenu) {
+    print(#function)
+  }
+  
+  func settingLauncherMenu(_ menu: LASettingsLauncherMenu, didSelectItemAt indexPath: IndexPath) {
+    
+  }
+  
+  // TODO: Present needed view controller
+  private func presentNewViewController() {
+    
+  }
+}
+
+// MARK: - LASettingsLauncherMenuDataSource
+
+extension HomeController: LASettingsLauncherMenuDataSource {
+  
+  func dataForMenu() -> [LASettingsLauncherMenuModel] {
+    
+    return [
+      LASettingsLauncherMenuModel(title: "Settings", image: UIImage(named: "settings")),
+      LASettingsLauncherMenuModel(title: "Settings", image: UIImage(named: "settings")),
+      LASettingsLauncherMenuModel(title: "Settings", image: UIImage(named: "settings")),
+      LASettingsLauncherMenuModel(title: "Settings", image: UIImage(named: "settings")),
+      LASettingsLauncherMenuModel(title: "Settings", image: UIImage(named: "settings")),
+      LASettingsLauncherMenuModel(title: "Settings", image: UIImage(named: "settings")),
+      LASettingsLauncherMenuModel(title: "Settings", image: UIImage(named: "settings")),
+      LASettingsLauncherMenuModel(title: "Settings", image: UIImage(named: "settings")),
+      LASettingsLauncherMenuModel(title: "Settings", image: UIImage(named: "settings")),
+      LASettingsLauncherMenuModel(title: "Settings", image: UIImage(named: "settings")),
+      LASettingsLauncherMenuModel(title: "Settings", image: UIImage(named: "settings")),
+      LASettingsLauncherMenuModel(title: "Settings", image: UIImage(named: "settings"))
+    ]
+  }
 }
 
