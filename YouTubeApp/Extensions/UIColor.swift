@@ -20,7 +20,7 @@ extension UIColor {
       return UIColor.rgb(red: 230, green: 32, blue: 31)
     }()
     
-    static let statusBarRed: UIColor = {
+    static let strongRed: UIColor = {
       return UIColor.rgb(red: 194, green: 31, blue: 31)
     }()
   }
