@@ -13,7 +13,6 @@ final class HomeController: UIViewController {
   
   private let blackView = UIView()
   private let settingsLauncher = BaseSettingLauncher()
-  fileprivate let cellIdentifier = "containerCollectionViewCell"
   
   fileprivate var videos: [Video]?
   
