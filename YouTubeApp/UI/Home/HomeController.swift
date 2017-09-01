@@ -66,8 +66,8 @@ final class HomeController: UIViewController {
   
   private func setupLAMenuBarView() {
     
-    let fV = UIView()
-    fV.backgroundColor = UIColor(red: 150/255, green: 206/255, blue: 180/255, alpha: 1.0)
+    let layout = UICollectionViewFlowLayout()
+    let homeView = HomeView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height), collectionViewLayout: layout)
     
     let sV = UIView()
     sV.backgroundColor = UIColor(red: 255/255, green: 238/255, blue: 173/255, alpha: 1.0)
@@ -78,7 +78,7 @@ final class HomeController: UIViewController {
     let foV = UIView()
     foV.backgroundColor = UIColor(red: 255/255, green: 204/255, blue: 92/255, alpha: 1.0)
     
-    let views = [fV, sV, tV, foV]
+    let views = [homeView, sV, tV, foV]
     
     let images = [UIImage(named: "home"), UIImage(named: "trending"), UIImage(named: "subscriptions"), UIImage(named: "account")]
     let model = LAMenuModel(images: images, backgroundColor: UIColor.BaseColor.mainRed, barColor: .white, tintColorWhenSelected: .white, tintColorWhenDiselected: UIColor.BaseColor.strongRed, views: views)
