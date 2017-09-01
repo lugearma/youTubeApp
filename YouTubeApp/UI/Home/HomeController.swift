@@ -13,7 +13,6 @@ import LASettingsLauncherMenu
 final class HomeController: UIViewController {
   
   private let blackView = UIView()
-//  private let settingsLauncher = BaseSettingLauncher()
   private let settingsLauncher = LASettingsLauncherMenu()
   
   fileprivate var videos: [Video]?
@@ -41,13 +40,6 @@ final class HomeController: UIViewController {
     return navigationbarButtons
   }()
   
-  // TODO: Change type when pod is ready
-  private lazy var menuBar: UIView = {
-    let menuBar = UIView()
-    menuBar.backgroundColor = UIColor.BaseColor.mainRed
-    return menuBar
-  }()
-  
   var viewModel: HomeViewModelProtocol? {
     willSet {
       viewModel?.delegate = nil
@@ -73,7 +65,7 @@ final class HomeController: UIViewController {
   }
   
   private func setupLAMenuBarView() {
-    // Create array of views that are going to be presented in each section
+    
     let fV = UIView()
     fV.backgroundColor = UIColor(red: 150/255, green: 206/255, blue: 180/255, alpha: 1.0)
     
@@ -137,12 +129,12 @@ extension HomeController: LASettingsLauncherMenuDelegate {
   }
   
   func settingLauncherMenu(_ menu: LASettingsLauncherMenu, didSelectItemAt indexPath: IndexPath) {
-    
+    print(#function)
   }
   
   // TODO: Present needed view controller
   private func presentNewViewController() {
-    
+    print(#function)
   }
 }
 
@@ -153,18 +145,10 @@ extension HomeController: LASettingsLauncherMenuDataSource {
   func dataForMenu() -> [LASettingsLauncherMenuModel] {
     
     return [
-      LASettingsLauncherMenuModel(title: "Settings", image: UIImage(named: "settings")),
-      LASettingsLauncherMenuModel(title: "Settings", image: UIImage(named: "settings")),
-      LASettingsLauncherMenuModel(title: "Settings", image: UIImage(named: "settings")),
-      LASettingsLauncherMenuModel(title: "Settings", image: UIImage(named: "settings")),
-      LASettingsLauncherMenuModel(title: "Settings", image: UIImage(named: "settings")),
-      LASettingsLauncherMenuModel(title: "Settings", image: UIImage(named: "settings")),
-      LASettingsLauncherMenuModel(title: "Settings", image: UIImage(named: "settings")),
-      LASettingsLauncherMenuModel(title: "Settings", image: UIImage(named: "settings")),
-      LASettingsLauncherMenuModel(title: "Settings", image: UIImage(named: "settings")),
-      LASettingsLauncherMenuModel(title: "Settings", image: UIImage(named: "settings")),
-      LASettingsLauncherMenuModel(title: "Settings", image: UIImage(named: "settings")),
-      LASettingsLauncherMenuModel(title: "Settings", image: UIImage(named: "settings"))
+      LASettingsLauncherMenuModel(title: "Settings", image: UIImage(named: "ico-umbrella")),
+      LASettingsLauncherMenuModel(title: "Profile", image: UIImage(named: "ico-profile")),
+      LASettingsLauncherMenuModel(title: "Privacy", image: UIImage(named: "ico-privacy")),
+      LASettingsLauncherMenuModel(title: "Help", image: UIImage(named: "ico-help")),
     ]
   }
 }
