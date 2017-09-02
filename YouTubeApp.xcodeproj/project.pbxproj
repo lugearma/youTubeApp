@@ -19,6 +19,7 @@
 		92294A931EED13FF00D09883 /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92294A921EED13FF00D09883 /* AppAppearance.swift */; };
 		92294A951EED235700D09883 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92294A941EED235700D09883 /* UIColor.swift */; };
 		92294AA11EED9FE500D09883 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92294AA01EED9FE500D09883 /* BaseCell.swift */; };
+		922CB1E11F5A1B4400317951 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922CB1E01F5A1B4400317951 /* HomeView.swift */; };
 		925952B61EEB28790050D14F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925952B51EEB28790050D14F /* AppDelegate.swift */; };
 		925952B81EEB28790050D14F /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925952B71EEB28790050D14F /* HomeController.swift */; };
 		925952BD1EEB28790050D14F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 925952BC1EEB28790050D14F /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 		92294A921EED13FF00D09883 /* AppAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
 		92294A941EED235700D09883 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColor.swift; path = Extensions/UIColor.swift; sourceTree = "<group>"; };
 		92294AA01EED9FE500D09883 /* BaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseCell.swift; path = Base/BaseCell.swift; sourceTree = "<group>"; };
+		922CB1E01F5A1B4400317951 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeView.swift; path = UI/Home/Sections/HomeView/HomeView.swift; sourceTree = "<group>"; };
 		925952B21EEB28790050D14F /* YouTubeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTubeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		925952B51EEB28790050D14F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		925952B71EEB28790050D14F /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeController.swift; path = /Users/luisarias/Documents/Desarrollo/iOS/Apps/YouTubeApp/YouTubeApp/YouTubeApp/UI/Home/HomeController.swift; sourceTree = "<absolute>"; };
@@ -101,6 +103,46 @@
 				921B51CB1F23A13E001BB8D7 /* BaseSettingsLauncherCell.swift */,
 			);
 			name = Base;
+			sourceTree = "<group>";
+		};
+		922CB1DB1F5A1A9100317951 /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				922CB1DC1F5A1A9A00317951 /* Home */,
+				922CB1DD1F5A1AEF00317951 /* Trending */,
+				922CB1DE1F5A1AFC00317951 /* Subscriptions */,
+				922CB1DF1F5A1B0F00317951 /* Library */,
+			);
+			name = Sections;
+			sourceTree = "<group>";
+		};
+		922CB1DC1F5A1A9A00317951 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				922CB1E01F5A1B4400317951 /* HomeView.swift */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		922CB1DD1F5A1AEF00317951 /* Trending */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Trending;
+			sourceTree = "<group>";
+		};
+		922CB1DE1F5A1AFC00317951 /* Subscriptions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Subscriptions;
+			sourceTree = "<group>";
+		};
+		922CB1DF1F5A1B0F00317951 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Library;
 			sourceTree = "<group>";
 		};
 		925952A91EEB28790050D14F = {
@@ -179,6 +221,7 @@
 				925952B71EEB28790050D14F /* HomeController.swift */,
 				925952CC1EEB2FA40050D14F /* HomeViewModel.swift */,
 				92294A891EEC515E00D09883 /* HomeCoordinator.swift */,
+				922CB1DB1F5A1A9100317951 /* Sections */,
 				92294A801EEC3EE500D09883 /* Cell */,
 			);
 			name = Home;
@@ -320,6 +363,7 @@
 				92294A8C1EEC51C300D09883 /* Coordinator.swift in Sources */,
 				92AF1F3F1F17B808007ABBC3 /* BaseSettingsLauncher.swift in Sources */,
 				925952B81EEB28790050D14F /* HomeController.swift in Sources */,
+				922CB1E11F5A1B4400317951 /* HomeView.swift in Sources */,
 				92294A931EED13FF00D09883 /* AppAppearance.swift in Sources */,
 				92294AA11EED9FE500D09883 /* BaseCell.swift in Sources */,
 				921B51CC1F23A13E001BB8D7 /* BaseSettingsLauncherCell.swift in Sources */,

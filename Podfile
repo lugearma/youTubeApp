@@ -10,5 +10,6 @@ target 'YouTubeApp' do
 
   pod 'Alamofire', '~> 4.4'
   pod 'LAMenuBar', :git => 'https://github.com/lugearma/LAMenuBar.git'
+  pod 'LASettingsLauncherMenu', :git => 'https://github.com/lugearma/LASettingsLauncherMenu.git'
 
 end

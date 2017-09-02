@@ -8,11 +8,12 @@
 
 import UIKit
 import LAMenuBar
+import LASettingsLauncherMenu
 
 final class HomeController: UIViewController {
   
   private let blackView = UIView()
-  private let settingsLauncher = BaseSettingLauncher()
+  private let settingsLauncher = LASettingsLauncherMenu()
   
   fileprivate var videos: [Video]?
   
@@ -39,13 +40,6 @@ final class HomeController: UIViewController {
     return navigationbarButtons
   }()
   
-  // TODO: Change type when pod is ready
-  private lazy var menuBar: UIView = {
-    let menuBar = UIView()
-    menuBar.backgroundColor = UIColor.BaseColor.mainRed
-    return menuBar
-  }()
-  
   var viewModel: HomeViewModelProtocol? {
     willSet {
       viewModel?.delegate = nil
@@ -62,12 +56,18 @@ final class HomeController: UIViewController {
     setupNavigationBar()
     setupLAMenuBarView()
     getVideos()
+    configureSettingLauncher()
+  }
+  
+  private func configureSettingLauncher() {
+    settingsLauncher.delegate = self
+    settingsLauncher.dataSource = self
   }
   
   private func setupLAMenuBarView() {
-    // Create array of views that are going to be presented in each section
-    let fV = UIView()
-    fV.backgroundColor = UIColor(red: 150/255, green: 206/255, blue: 180/255, alpha: 1.0)
+    
+    let layout = UICollectionViewFlowLayout()
+    let homeView = HomeView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height), collectionViewLayout: layout)
     
     let sV = UIView()
     sV.backgroundColor = UIColor(red: 255/255, green: 238/255, blue: 173/255, alpha: 1.0)
@@ -78,7 +78,7 @@ final class HomeController: UIViewController {
     let foV = UIView()
     foV.backgroundColor = UIColor(red: 255/255, green: 204/255, blue: 92/255, alpha: 1.0)
     
-    let views = [fV, sV, tV, foV]
+    let views = [homeView, sV, tV, foV]
     
     let images = [UIImage(named: "home"), UIImage(named: "trending"), UIImage(named: "subscriptions"), UIImage(named: "account")]
     let model = LAMenuModel(images: images, backgroundColor: UIColor.BaseColor.mainRed, barColor: .white, tintColorWhenSelected: .white, tintColorWhenDiselected: UIColor.BaseColor.strongRed, views: views)
@@ -110,7 +110,7 @@ final class HomeController: UIViewController {
   }
   
   func handleMenu() {
-    settingsLauncher.showSettings()
+    settingsLauncher.showSettingMenu()
   }
 }
 
@@ -118,5 +118,38 @@ final class HomeController: UIViewController {
 
 extension HomeController: HomeViewModelDelegate {
   
+}
+
+// MARK: - LASettingsLauncherMenuDelegate
+
+extension HomeController: LASettingsLauncherMenuDelegate {
+  
+  func didHideMenu(_ menu: LASettingsLauncherMenu) {
+    print(#function)
+  }
+  
+  func settingLauncherMenu(_ menu: LASettingsLauncherMenu, didSelectItemAt indexPath: IndexPath) {
+    print(#function)
+  }
+  
+  // TODO: Present needed view controller
+  private func presentNewViewController() {
+    print(#function)
+  }
+}
+
+// MARK: - LASettingsLauncherMenuDataSource
+
+extension HomeController: LASettingsLauncherMenuDataSource {
+  
+  func dataForMenu() -> [LASettingsLauncherMenuModel] {
+    
+    return [
+      LASettingsLauncherMenuModel(title: "Settings", image: UIImage(named: "ico-umbrella")),
+      LASettingsLauncherMenuModel(title: "Profile", image: UIImage(named: "ico-profile")),
+      LASettingsLauncherMenuModel(title: "Privacy", image: UIImage(named: "ico-privacy")),
+      LASettingsLauncherMenuModel(title: "Help", image: UIImage(named: "ico-help")),
+    ]
+  }
 }
 
