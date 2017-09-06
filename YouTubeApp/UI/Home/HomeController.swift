@@ -17,7 +17,7 @@ final class HomeController: UIViewController {
   
   fileprivate var videos: [Video]?
   
-  private lazy var navigationItemLabel: UILabel = {
+  fileprivate lazy var navigationItemLabel: UILabel = {
     let label = UILabel()
     let labelFrame = CGRect(x: 0, y: 0, width: self.view.frame.width - 32, height: 32)
     
@@ -86,6 +86,7 @@ final class HomeController: UIViewController {
     let menuView = LAMenuView()
     
     menuView.model = model
+    menuView.configuration(delegate: self)
     
     view.addSubview(menuView)
     
@@ -150,6 +151,26 @@ extension HomeController: LASettingsLauncherMenuDataSource {
       LASettingsLauncherMenuModel(title: "Privacy", image: UIImage(named: "ico-privacy")),
       LASettingsLauncherMenuModel(title: "Help", image: UIImage(named: "ico-help")),
     ]
+  }
+}
+
+// MARK: - LAMenuViewDelegate
+
+extension HomeController: LAMenuViewDelegate {
+  
+  func menuView(_ view: LAMenuView, didScrollWithIndex index: IndexPath) {
+    updateNavigationTitleAtIndex(index: index)
+  }
+  
+  func menuView(_ view: LAMenuView, didSelectMenuItemAtIndex index: IndexPath) {
+    updateNavigationTitleAtIndex(index: index)
+  }
+  
+  private func updateNavigationTitleAtIndex(index: IndexPath) {
+    
+    let names = ["View1", "View2", "View3", "View4"]
+    
+    navigationItemLabel.text = names[index.item]
   }
 }
 
