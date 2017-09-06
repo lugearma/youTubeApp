@@ -19,7 +19,7 @@ CHECKOUT OPTIONS:
     :commit: 7929d2962ea46332ea4ff61038f4eb0aee462d3e
     :git: https://github.com/lugearma/LAMenuBar.git
   LASettingsLauncherMenu:
-    :commit: b3d06bb7c2681a7331ce01580646956178e3588f
+    :commit: 15a2d452eae147cee05a5f652f05c310a06c1680
     :git: https://github.com/lugearma/LASettingsLauncherMenu.git
 
 SPEC CHECKSUMS:

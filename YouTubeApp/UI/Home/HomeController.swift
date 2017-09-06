@@ -62,6 +62,7 @@ final class HomeController: UIViewController {
   private func configureSettingLauncher() {
     settingsLauncher.delegate = self
     settingsLauncher.dataSource = self
+    settingsLauncher.animationOptions = .curveEaseInOut
   }
   
   private func setupLAMenuBarView() {
