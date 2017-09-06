@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.5.0)
+  - Alamofire (4.5.1)
   - LAMenuBar (0.1.0)
   - LASettingsLauncherMenu (0.1.0)
 
@@ -16,14 +16,14 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   LAMenuBar:
-    :commit: 5401da2b3d4315dc161789c61fe2e2dd298bb0be
+    :commit: 7929d2962ea46332ea4ff61038f4eb0aee462d3e
     :git: https://github.com/lugearma/LAMenuBar.git
   LASettingsLauncherMenu:
     :commit: b3d06bb7c2681a7331ce01580646956178e3588f
     :git: https://github.com/lugearma/LASettingsLauncherMenu.git
 
 SPEC CHECKSUMS:
-  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   LAMenuBar: 591d2392ed858ece5b92b94f14715e13151ed899
   LASettingsLauncherMenu: 3096d2d31c9f0466f3e19174b4e5b4ee087166a7
 
