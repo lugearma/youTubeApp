@@ -24,7 +24,7 @@ final class HomeController: UIViewController {
     label.frame = labelFrame
     label.textColor = .white
     label.text = "Home"
-    label.font = UIFont.systemFont(ofSize: 20)
+    label.font = UIFont.systemFont(ofSize: 18)
     return label
   }()
   
@@ -169,7 +169,8 @@ extension HomeController: LAMenuViewDelegate {
   
   private func updateNavigationTitleAtIndex(index: IndexPath) {
     
-    let names = ["View1", "View2", "View3", "View4"]
+    // TODO: Find better way to deal with nav titles
+    let names = ["Home", "Trending", "Subscriptions", "Profile"]
     
     navigationItemLabel.text = names[index.item]
   }
