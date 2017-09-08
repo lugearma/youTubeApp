@@ -182,7 +182,15 @@ extension HomeController: LAMenuViewDelegate {
 extension HomeController: HomeViewDelegate {
   
   func homView(_ view: VideoCell, didSelectItemAt indexPath: IndexPath) {
-    print(#function)
+    let window = UIApplication.shared.keyWindow
+    let videoFrame = CGRect(x: window?.frame.maxX ?? 0, y: window?.frame.maxY ?? 0, width: 0, height: 0)
+    let videoPlayer = VideoPlayerView(frame: videoFrame)
+    
+    window?.addSubview(videoPlayer)
+    
+    UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
+      videoPlayer.frame = CGRect(x: 0, y: 0, width: window?.frame.width ?? 0, height: window?.frame.height ?? 0)
+    }, completion: nil)
   }
 }
 
