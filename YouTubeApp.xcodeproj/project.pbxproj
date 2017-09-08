@@ -20,6 +20,8 @@
 		92294A951EED235700D09883 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92294A941EED235700D09883 /* UIColor.swift */; };
 		92294AA11EED9FE500D09883 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92294AA01EED9FE500D09883 /* BaseCell.swift */; };
 		922CB1E11F5A1B4400317951 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922CB1E01F5A1B4400317951 /* HomeView.swift */; };
+		922CB1E51F63376D00317951 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922CB1E41F63376D00317951 /* VideoPlayerView.swift */; };
+		922CB1E71F63379B00317951 /* VideoPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922CB1E61F63379B00317951 /* VideoPlayerViewModel.swift */; };
 		925952B61EEB28790050D14F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925952B51EEB28790050D14F /* AppDelegate.swift */; };
 		925952B81EEB28790050D14F /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925952B71EEB28790050D14F /* HomeController.swift */; };
 		925952BD1EEB28790050D14F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 925952BC1EEB28790050D14F /* Assets.xcassets */; };
@@ -43,6 +45,8 @@
 		92294A941EED235700D09883 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColor.swift; path = Extensions/UIColor.swift; sourceTree = "<group>"; };
 		92294AA01EED9FE500D09883 /* BaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseCell.swift; path = Base/BaseCell.swift; sourceTree = "<group>"; };
 		922CB1E01F5A1B4400317951 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeView.swift; path = UI/Home/Sections/HomeView/HomeView.swift; sourceTree = "<group>"; };
+		922CB1E41F63376D00317951 /* VideoPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoPlayerView.swift; path = UI/VideoPlayer/VideoPlayerView.swift; sourceTree = "<group>"; };
+		922CB1E61F63379B00317951 /* VideoPlayerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoPlayerViewModel.swift; path = UI/VideoPlayer/VideoPlayerViewModel.swift; sourceTree = "<group>"; };
 		925952B21EEB28790050D14F /* YouTubeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTubeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		925952B51EEB28790050D14F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		925952B71EEB28790050D14F /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeController.swift; path = /Users/luisarias/Documents/Desarrollo/iOS/Apps/YouTubeApp/YouTubeApp/YouTubeApp/UI/Home/HomeController.swift; sourceTree = "<absolute>"; };
@@ -145,6 +149,15 @@
 			name = Library;
 			sourceTree = "<group>";
 		};
+		922CB1E31F63361000317951 /* VideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				922CB1E41F63376D00317951 /* VideoPlayerView.swift */,
+				922CB1E61F63379B00317951 /* VideoPlayerViewModel.swift */,
+			);
+			name = VideoPlayer;
+			sourceTree = "<group>";
+		};
 		925952A91EEB28790050D14F = {
 			isa = PBXGroup;
 			children = (
@@ -185,6 +198,7 @@
 		925952C71EEB2E010050D14F /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				922CB1E31F63361000317951 /* VideoPlayer */,
 				925952CB1EEB2E9E0050D14F /* Home */,
 			);
 			name = UI;
@@ -362,10 +376,12 @@
 				92294A951EED235700D09883 /* UIColor.swift in Sources */,
 				92294A8C1EEC51C300D09883 /* Coordinator.swift in Sources */,
 				92AF1F3F1F17B808007ABBC3 /* BaseSettingsLauncher.swift in Sources */,
+				922CB1E71F63379B00317951 /* VideoPlayerViewModel.swift in Sources */,
 				925952B81EEB28790050D14F /* HomeController.swift in Sources */,
 				922CB1E11F5A1B4400317951 /* HomeView.swift in Sources */,
 				92294A931EED13FF00D09883 /* AppAppearance.swift in Sources */,
 				92294AA11EED9FE500D09883 /* BaseCell.swift in Sources */,
+				922CB1E51F63376D00317951 /* VideoPlayerView.swift in Sources */,
 				921B51CC1F23A13E001BB8D7 /* BaseSettingsLauncherCell.swift in Sources */,
 				92294A861EEC4B7200D09883 /* Video.swift in Sources */,
 				92D0F51D1EF173A200754E88 /* Channel.swift in Sources */,

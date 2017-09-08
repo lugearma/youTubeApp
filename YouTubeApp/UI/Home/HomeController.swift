@@ -69,6 +69,7 @@ final class HomeController: UIViewController {
     
     let layout = UICollectionViewFlowLayout()
     let homeView = HomeView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height), collectionViewLayout: layout)
+    homeView.homeViewDelegate = self
     
     let sV = UIView()
     sV.backgroundColor = UIColor(red: 255/255, green: 238/255, blue: 173/255, alpha: 1.0)
@@ -173,6 +174,15 @@ extension HomeController: LAMenuViewDelegate {
     let names = ["Home", "Trending", "Subscriptions", "Profile"]
     
     navigationItemLabel.text = names[index.item]
+  }
+}
+
+// MARK: - HomeViewDelegate
+
+extension HomeController: HomeViewDelegate {
+  
+  func homView(_ view: VideoCell, didSelectItemAt indexPath: IndexPath) {
+    print(#function)
   }
 }
 

@@ -8,7 +8,14 @@
 
 import UIKit
 
+protocol HomeViewDelegate: class {
+  
+  func homView(_ view: VideoCell, didSelectItemAt indexPath: IndexPath)
+}
+
 final class HomeView: UICollectionView {
+  
+  weak var homeViewDelegate: HomeViewDelegate?
 
   override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
     super.init(frame: frame, collectionViewLayout: layout)
@@ -26,7 +33,13 @@ final class HomeView: UICollectionView {
 
 // MARK: - UICollectionViewDelegate
 
-extension HomeView: UICollectionViewDelegate {}
+extension HomeView: UICollectionViewDelegate {
+  
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    guard let cell = collectionView.cellForItem(at: indexPath) as? VideoCell else { return }
+    homeViewDelegate?.homView(cell, didSelectItemAt: indexPath)
+  }
+}
 
 // MARK: - UICollectionViewDataSource
 
