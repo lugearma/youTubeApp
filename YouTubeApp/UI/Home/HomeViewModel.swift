@@ -8,11 +8,8 @@
 
 import UIKit
 
-// MARK: HomeViewModelDelegate
 
 protocol HomeViewModelDelegate: class {}
-
-// MARK: HomeViewModelProtocol
 
 protocol HomeViewModelProtocol: class {
   
@@ -20,8 +17,6 @@ protocol HomeViewModelProtocol: class {
   
   func getVideos() -> [Video]
 }
-
-// MARK: HomeViewModel
 
 final class HomeViewModel: HomeViewModelProtocol {
   

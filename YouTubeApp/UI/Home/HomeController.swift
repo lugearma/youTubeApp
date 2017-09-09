@@ -24,7 +24,7 @@ final class HomeController: UIViewController {
     label.frame = labelFrame
     label.textColor = .white
     label.text = "Home"
-    label.font = UIFont.systemFont(ofSize: 20)
+    label.font = UIFont.systemFont(ofSize: 18)
     return label
   }()
   
@@ -69,6 +69,7 @@ final class HomeController: UIViewController {
     
     let layout = UICollectionViewFlowLayout()
     let homeView = HomeView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height), collectionViewLayout: layout)
+    homeView.homeViewDelegate = self
     
     let sV = UIView()
     sV.backgroundColor = UIColor(red: 255/255, green: 238/255, blue: 173/255, alpha: 1.0)
@@ -169,9 +170,31 @@ extension HomeController: LAMenuViewDelegate {
   
   private func updateNavigationTitleAtIndex(index: IndexPath) {
     
-    let names = ["View1", "View2", "View3", "View4"]
+    // TODO: Find better way to deal with nav titles
+    let names = ["Home", "Trending", "Subscriptions", "Profile"]
     
     navigationItemLabel.text = names[index.item]
+  }
+}
+
+// MARK: - HomeViewDelegate
+
+extension HomeController: HomeViewDelegate {
+  
+  func homView(_ view: VideoCell, didSelectItemAt indexPath: IndexPath) {
+    guard let window = UIApplication.shared.keyWindow else { return }
+    let videoLauncherViewModel = VideoLauncherViewModel(videoName: "", videoPlayerWidth: Int(window.frame.width))
+    let videoLauncherFrame = CGRect(x: window.frame.maxX, y: window.frame.maxY, width: 0, height: 0)
+    let videoLauncher = VideoLauncherView(frame: videoLauncherFrame)
+    videoLauncher.viewModel = videoLauncherViewModel
+    
+    window.addSubview(videoLauncher)
+    
+    UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
+      videoLauncher.frame = window.frame
+    }, completion: { _ in
+      UIApplication.shared.isStatusBarHidden = true
+    })
   }
 }
 
