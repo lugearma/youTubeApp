@@ -10,16 +10,9 @@ import Foundation
 
 protocol VideoPlayerViewModelProtocol: class {
   
-  var videoName: String { get }
   
-  init(videoName: String)
 }
 
-class VideoPlayerViewModel: VideoPlayerViewModelProtocol {
+final class VideoPlayerViewModel: VideoPlayerViewModelProtocol {
   
-  let videoName: String
-  
-  required init(videoName: String) {
-    self.videoName = videoName
-  }
 }

@@ -182,15 +182,19 @@ extension HomeController: LAMenuViewDelegate {
 extension HomeController: HomeViewDelegate {
   
   func homView(_ view: VideoCell, didSelectItemAt indexPath: IndexPath) {
-    let window = UIApplication.shared.keyWindow
-    let videoFrame = CGRect(x: window?.frame.maxX ?? 0, y: window?.frame.maxY ?? 0, width: 0, height: 0)
-    let videoPlayer = VideoPlayerView(frame: videoFrame)
+    guard let window = UIApplication.shared.keyWindow else { return }
+    let videoLauncherViewModel = VideoLauncherViewModel(videoName: "", videoPlayerWidth: Int(window.frame.width))
+    let videoLauncherFrame = CGRect(x: window.frame.maxX, y: window.frame.maxY, width: 0, height: 0)
+    let videoLauncher = VideoLauncherView(frame: videoLauncherFrame)
+    videoLauncher.viewModel = videoLauncherViewModel
     
-    window?.addSubview(videoPlayer)
+    window.addSubview(videoLauncher)
     
     UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
-      videoPlayer.frame = CGRect(x: 0, y: 0, width: window?.frame.width ?? 0, height: window?.frame.height ?? 0)
-    }, completion: nil)
+      videoLauncher.frame = window.frame
+    }, completion: { _ in
+      UIApplication.shared.isStatusBarHidden = true
+    })
   }
 }
 
