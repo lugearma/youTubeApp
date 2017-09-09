@@ -18,7 +18,7 @@ final class VideoPlayerView: UIView {
     
     backgroundColor = .black
     
-//    configureVideoPlayer()
+    configureVideoPlayer()
   }
   
   required init?(coder aDecoder: NSCoder) {
