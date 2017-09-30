@@ -17,7 +17,6 @@ final class VideoPlayerView: UIView {
     super.init(frame: frame)
     
     backgroundColor = .black
-    
     configureVideoPlayer()
   }
   
@@ -35,6 +34,12 @@ final class VideoPlayerView: UIView {
       playerLayer.frame = self.frame
       
       videoPlayer.play()
+      
+      videoPlayer.addObserver(self, forKeyPath: "currentItem.loadedTimeRanges", options: .new, context: nil)
     }
+  }
+  
+  override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    print("Hey, video is playing 😗")
   }
 }

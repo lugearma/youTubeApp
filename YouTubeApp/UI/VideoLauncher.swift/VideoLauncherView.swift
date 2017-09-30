@@ -13,8 +13,15 @@ final class VideoLauncherView: UIView {
   var viewModel: VideoLauncherViewModel? {
     didSet {
       configureVideoPlayer()
+      configureControlsContainerView()
     }
   }
+  
+  var controlsContainerView: UIView = {
+    let view = UIView()
+    view.backgroundColor = UIColor(white: 0.0, alpha: 0.5)
+    return view
+  }()
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -24,6 +31,13 @@ final class VideoLauncherView: UIView {
   
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+  
+  private func configureControlsContainerView() {
+    guard let width = viewModel?.videoPlayerWidth else { return }
+    
+    controlsContainerView.frame = CGRect(x: 0, y: 0, width: width, height: width * 9/16)
+    addSubview(controlsContainerView)
   }
   
   private func configureVideoPlayer() {
