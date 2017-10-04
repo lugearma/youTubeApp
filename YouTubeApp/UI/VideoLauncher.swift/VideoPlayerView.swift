@@ -9,12 +9,20 @@
 import UIKit
 import AVFoundation
 
+protocol VideoPlayerViewDelegate: class {
+  
+  func didFinishLoadVideo(_ video: VideoPlayerView)
+}
+
 final class VideoPlayerView: UIView {
   
   var viewModel: VideoPlayerViewModel?
+  weak var delegate: VideoPlayerViewDelegate?
   
-  override init(frame: CGRect) {
+  init(frame: CGRect, delegate: VideoPlayerViewDelegate? = nil) {
     super.init(frame: frame)
+    
+    self.delegate = delegate
     
     backgroundColor = .black
     configureVideoPlayer()
@@ -40,6 +48,7 @@ final class VideoPlayerView: UIView {
   }
   
   override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    delegate?.didFinishLoadVideo(self)
     print("Hey, video is playing 😗")
   }
 }
