@@ -15,26 +15,36 @@ protocol VideoPlayerViewDelegate: class {
 
 final class VideoPlayerView: UIView {
   
-  var viewModel: VideoPlayerViewModel?
   weak var delegate: VideoPlayerViewDelegate?
+  var viewModel: VideoPlayerViewModel?
+  var videoPlayer: AVPlayer!
   
-  let pauseButton: UIButton = {
+  var isPlayingVideo = true {
+    didSet {
+      let name: String
+      name = isPlayingVideo ? "ico-pause" : "ico-play"
+      pausePlayButton.setImage(UIImage(named: name), for: .normal)
+    }
+  }
+  
+  lazy var pausePlayButton: UIButton = {
     let button = UIButton(type: .system)
     let image = UIImage(named: "ico-pause")
     button.setImage(image, for: .normal)
     button.translatesAutoresizingMaskIntoConstraints = false
     button.tintColor = .white
+    button.isHidden = true
     button.addTarget(self, action: #selector(handlePause), for: .touchUpInside)
     return button
   }()
   
-  let controlsContainerView: UIView = {
+  lazy var controlsContainerView: UIView = {
     let view = UIView()
     view.backgroundColor = UIColor(white: 0.0, alpha: 0.5)
     return view
   }()
   
-  let activityIndicatorView: UIActivityIndicatorView = {
+  lazy var activityIndicatorView: UIActivityIndicatorView = {
     let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
     activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
     activityIndicatorView.startAnimating()
@@ -56,13 +66,18 @@ final class VideoPlayerView: UIView {
   }
   
   func handlePause() {
-    print("Pause Video")
+    if isPlayingVideo {
+      videoPlayer.pause()
+    } else {
+      videoPlayer.play()
+    }
+    isPlayingVideo = !isPlayingVideo
   }
   
   private func configureVideoPlayer() {
     
     if let url = URL(string: "http://techslides.com/demos/sample-videos/small.mp4") {
-      let videoPlayer = AVPlayer(url: url)
+      videoPlayer = AVPlayer(url: url)
       
       let playerLayer = AVPlayerLayer(player: videoPlayer)
       self.layer.addSublayer(playerLayer)
@@ -84,15 +99,17 @@ final class VideoPlayerView: UIView {
     activityIndicatorView.centerXAnchor.constraint(equalTo: controlsContainerView.centerXAnchor).isActive = true
     activityIndicatorView.centerYAnchor.constraint(equalTo: controlsContainerView.centerYAnchor).isActive = true
     
-    controlsContainerView.addSubview(pauseButton)
-    pauseButton.centerXAnchor.constraint(equalTo: controlsContainerView.centerXAnchor).isActive = true
-    pauseButton.centerYAnchor.constraint(equalTo: controlsContainerView.centerYAnchor).isActive = true
-    pauseButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-    pauseButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+    controlsContainerView.addSubview(pausePlayButton)
+    
+    pausePlayButton.centerXAnchor.constraint(equalTo: controlsContainerView.centerXAnchor).isActive = true
+    pausePlayButton.centerYAnchor.constraint(equalTo: controlsContainerView.centerYAnchor).isActive = true
+    pausePlayButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+    pausePlayButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
   }
   
   override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
     activityIndicatorView.stopAnimating()
     controlsContainerView.backgroundColor = .clear
+    pausePlayButton.isHidden = false
   }
 }
