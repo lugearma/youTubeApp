@@ -10,7 +10,6 @@ import UIKit
 import AVFoundation
 
 protocol VideoPlayerViewDelegate: class {
-  
   func didFinishLoadVideo(_ video: VideoPlayerView)
 }
 
@@ -19,6 +18,29 @@ final class VideoPlayerView: UIView {
   var viewModel: VideoPlayerViewModel?
   weak var delegate: VideoPlayerViewDelegate?
   
+  let pauseButton: UIButton = {
+    let button = UIButton(type: .system)
+    let image = UIImage(named: "ico-pause")
+    button.setImage(image, for: .normal)
+    button.translatesAutoresizingMaskIntoConstraints = false
+    button.tintColor = .white
+    button.addTarget(self, action: #selector(handlePause), for: .touchUpInside)
+    return button
+  }()
+  
+  let controlsContainerView: UIView = {
+    let view = UIView()
+    view.backgroundColor = UIColor(white: 0.0, alpha: 0.5)
+    return view
+  }()
+  
+  let activityIndicatorView: UIActivityIndicatorView = {
+    let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+    activityIndicatorView.startAnimating()
+    return activityIndicatorView
+  }()
+  
   init(frame: CGRect, delegate: VideoPlayerViewDelegate? = nil) {
     super.init(frame: frame)
     
@@ -26,10 +48,15 @@ final class VideoPlayerView: UIView {
     
     backgroundColor = .black
     configureVideoPlayer()
+    configureControlsContainerView(frame)
   }
   
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+  
+  func handlePause() {
+    print("Pause Video")
   }
   
   private func configureVideoPlayer() {
@@ -47,8 +74,25 @@ final class VideoPlayerView: UIView {
     }
   }
   
+  private func configureControlsContainerView(_ frame: CGRect) {
+    
+    controlsContainerView.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.width * 9/16)
+    addSubview(controlsContainerView)
+    
+    controlsContainerView.addSubview(activityIndicatorView)
+    
+    activityIndicatorView.centerXAnchor.constraint(equalTo: controlsContainerView.centerXAnchor).isActive = true
+    activityIndicatorView.centerYAnchor.constraint(equalTo: controlsContainerView.centerYAnchor).isActive = true
+    
+    controlsContainerView.addSubview(pauseButton)
+    pauseButton.centerXAnchor.constraint(equalTo: controlsContainerView.centerXAnchor).isActive = true
+    pauseButton.centerYAnchor.constraint(equalTo: controlsContainerView.centerYAnchor).isActive = true
+    pauseButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+    pauseButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+  }
+  
   override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-    delegate?.didFinishLoadVideo(self)
-    print("Hey, video is playing 😗")
+    activityIndicatorView.stopAnimating()
+    controlsContainerView.backgroundColor = .clear
   }
 }

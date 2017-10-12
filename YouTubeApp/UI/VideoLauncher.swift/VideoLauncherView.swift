@@ -13,22 +13,15 @@ final class VideoLauncherView: UIView {
   var viewModel: VideoLauncherViewModel? {
     didSet {
       configureVideoPlayer()
-      configureControlsContainerView()
+//      configureControlsContainerView()
     }
   }
   
-  let controlsContainerView: UIView = {
-    let view = UIView()
-    view.backgroundColor = UIColor(white: 0.0, alpha: 0.5)
-    return view
-  }()
   
-  let activityIndicatorView: UIActivityIndicatorView = {
-    let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-    activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
-    activityIndicatorView.startAnimating()
-    return activityIndicatorView
-  }()
+  
+  
+  
+  
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -40,17 +33,11 @@ final class VideoLauncherView: UIView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  private func configureControlsContainerView() {
-    guard let width = viewModel?.videoPlayerWidth else { return }
+  func handlePause() {
     
-    controlsContainerView.frame = CGRect(x: 0, y: 0, width: width, height: width * 9/16)
-    addSubview(controlsContainerView)
-    
-    controlsContainerView.addSubview(activityIndicatorView)
-    
-    activityIndicatorView.centerXAnchor.constraint(equalTo: controlsContainerView.centerXAnchor).isActive = true
-    activityIndicatorView.centerYAnchor.constraint(equalTo: controlsContainerView.centerYAnchor).isActive = true
   }
+  
+  
   
   private func configureVideoPlayer() {
     guard let width = viewModel?.videoPlayerWidth else { return }
@@ -67,6 +54,7 @@ final class VideoLauncherView: UIView {
 extension VideoLauncherView: VideoPlayerViewDelegate {
   
   func didFinishLoadVideo(_ video: VideoPlayerView) {
-    activityIndicatorView.stopAnimating()
+//    activityIndicatorView.stopAnimating()
+//    controlsContainerView.backgroundColor = .clear
   }
 }
