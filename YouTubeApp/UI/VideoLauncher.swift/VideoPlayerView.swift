@@ -51,10 +51,8 @@ final class VideoPlayerView: UIView {
     return activityIndicatorView
   }()
   
-  init(frame: CGRect, delegate: VideoPlayerViewDelegate? = nil) {
+  override init(frame: CGRect) {
     super.init(frame: frame)
-    
-    self.delegate = delegate
     
     backgroundColor = .black
     configureVideoPlayer()
@@ -71,6 +69,7 @@ final class VideoPlayerView: UIView {
     } else {
       videoPlayer.play()
     }
+    
     isPlayingVideo = !isPlayingVideo
   }
   
@@ -84,7 +83,6 @@ final class VideoPlayerView: UIView {
       playerLayer.frame = self.frame
       
       videoPlayer.play()
-      
       videoPlayer.addObserver(self, forKeyPath: "currentItem.loadedTimeRanges", options: .new, context: nil)
     }
   }

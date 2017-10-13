@@ -157,9 +157,9 @@
 			isa = PBXGroup;
 			children = (
 				928A43DD1F6344DB0080E337 /* VideoLauncherView.swift */,
+				928A43DF1F6349DC0080E337 /* VideoLauncherViewModel.swift */,
 				922CB1E41F63376D00317951 /* VideoPlayerView.swift */,
 				922CB1E61F63379B00317951 /* VideoPlayerViewModel.swift */,
-				928A43DF1F6349DC0080E337 /* VideoLauncherViewModel.swift */,
 			);
 			name = VideoLauncher;
 			sourceTree = "<group>";
