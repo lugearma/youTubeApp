@@ -51,6 +51,38 @@ final class VideoPlayerView: UIView {
     return activityIndicatorView
   }()
   
+  lazy var videoLengthLabel: UILabel = {
+    let label = UILabel()
+    label.textColor = .white
+    label.text = "00:00"
+    label.translatesAutoresizingMaskIntoConstraints = false
+    label.font = UIFont.boldSystemFont(ofSize: 14)
+    label.textAlignment = .right
+    return label
+  }()
+  
+  lazy var currentProgressVideoLabel: UILabel = {
+    let label = UILabel()
+    label.textColor = .white
+    label.text = "00:00"
+    label.translatesAutoresizingMaskIntoConstraints = false
+    label.font = UIFont.boldSystemFont(ofSize: 14)
+    label.textAlignment = .left
+    return label
+  }()
+  
+  lazy var videoProgressSlider: UISlider = {
+    let slider = UISlider()
+    slider.tintColor = UIColor.BaseColor.mainRed
+    slider.minimumTrackTintColor = UIColor.BaseColor.mainRed
+    slider.translatesAutoresizingMaskIntoConstraints = false
+    slider.maximumTrackTintColor = .white
+    let thumbImage = CustomThumb.image(CGSize(width: 15, height: 15))
+    slider.setThumbImage(thumbImage, for: .normal)
+    slider.addTarget(self, action: #selector(handleSliderValueChange), for: .valueChanged)
+    return slider
+  }()
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     
@@ -73,9 +105,18 @@ final class VideoPlayerView: UIView {
     isPlayingVideo = !isPlayingVideo
   }
   
+  func handleSliderValueChange() {
+    if let duration = videoPlayer.currentItem?.duration {
+      let totalSeconds = CMTimeGetSeconds(duration)
+      let value = CMTimeValue(Float64(videoProgressSlider.value) * totalSeconds)
+      let seekTime = CMTime(value: value, timescale: 1)
+      videoPlayer.seek(to: seekTime)
+    }
+  }
+  
   private func configureVideoPlayer() {
-    
-    if let url = URL(string: "http://techslides.com/demos/sample-videos/small.mp4") {
+    if let filePath = Bundle.main.path(forResource: "sampleVideo", ofType: ".mp4") {
+      let url = URL(fileURLWithPath: filePath)
       videoPlayer = AVPlayer(url: url)
       
       let playerLayer = AVPlayerLayer(player: videoPlayer)
@@ -103,11 +144,86 @@ final class VideoPlayerView: UIView {
     pausePlayButton.centerYAnchor.constraint(equalTo: controlsContainerView.centerYAnchor).isActive = true
     pausePlayButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
     pausePlayButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+    
+    controlsContainerView.addSubview(videoLengthLabel)
+    
+    videoLengthLabel.rightAnchor.constraint(equalTo: controlsContainerView.rightAnchor, constant: -8).isActive = true
+    videoLengthLabel.bottomAnchor.constraint(equalTo: controlsContainerView.bottomAnchor).isActive = true
+    videoLengthLabel.widthAnchor.constraint(equalToConstant: 60).isActive = true
+    videoLengthLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
+    
+    controlsContainerView.addSubview(currentProgressVideoLabel)
+    
+    currentProgressVideoLabel.leftAnchor.constraint(equalTo: controlsContainerView.leftAnchor, constant: 8).isActive = true
+    currentProgressVideoLabel.bottomAnchor.constraint(equalTo: controlsContainerView.bottomAnchor).isActive = true
+    currentProgressVideoLabel.widthAnchor.constraint(equalToConstant: 60).isActive = true
+    currentProgressVideoLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
+    
+    controlsContainerView.addSubview(videoProgressSlider)
+    
+    videoProgressSlider.leftAnchor.constraint(equalTo: currentProgressVideoLabel.rightAnchor, constant: 8).isActive = true
+    videoProgressSlider.rightAnchor.constraint(equalTo: videoLengthLabel.leftAnchor, constant: -8).isActive = true
+    videoProgressSlider.bottomAnchor.constraint(equalTo: controlsContainerView.bottomAnchor, constant: -4).isActive = true
+    currentProgressVideoLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
   }
   
   override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-    activityIndicatorView.stopAnimating()
-    controlsContainerView.backgroundColor = .clear
-    pausePlayButton.isHidden = false
+    
+    if keyPath == "currentItem.loadedTimeRanges" {
+      activityIndicatorView.stopAnimating()
+      controlsContainerView.backgroundColor = .clear
+      pausePlayButton.isHidden = false
+      
+      //TODO: Make a Double extension for this
+      if let seconds = videoPlayer.currentItem?.duration.seconds {
+        let secondsText = Int(seconds.truncatingRemainder(dividingBy: 60))
+        let secondsString = String(format: "%02d", secondsText)
+        let minutesText = Int(seconds.divided(by: 60))
+        let minutesString = String(format: "%02d", minutesText)
+        
+        videoLengthLabel.text = minutesString + ":" + secondsString
+      }
+    }
+  }
+}
+
+// MARK: - CustomThumb
+
+extension VideoPlayerView {
+  fileprivate class CustomThumb: UIView {
+    
+    private var color: UIColor!
+    
+    init(frame: CGRect, color: UIColor) {
+      super.init(frame: frame)
+      self.color = color
+      backgroundColor = .clear
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+      fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func draw(_ rect: CGRect) {
+      color.setStroke()
+      color.setFill()
+      
+      let circle = UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
+      circle.lineWidth = 0
+      circle.fill()
+      circle.stroke()
+    }
+    
+    class func image(_ size: CGSize) -> UIImage? {
+      let frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+      let view = CustomThumb(frame: frame, color: UIColor.BaseColor.mainRed)
+      
+      UIGraphicsBeginImageContextWithOptions(size, false, 0)
+      view.drawHierarchy(in: frame, afterScreenUpdates: true)
+      let image = UIGraphicsGetImageFromCurrentImageContext()
+      UIGraphicsEndImageContext()
+      
+      return image
+    }
   }
 }
