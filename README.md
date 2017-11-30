@@ -8,4 +8,4 @@
 
 ## Installation
 
-I know how you can run this 🤓
+I know that you know how to run this 🤓
