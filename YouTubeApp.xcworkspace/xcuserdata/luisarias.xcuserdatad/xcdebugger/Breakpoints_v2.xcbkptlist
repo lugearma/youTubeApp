@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YouTubeApp/UI/VideoLauncher.swift/VideoPlayerView.swift"
-            timestampString = "533530400.790643"
+            timestampString = "533699041.822205"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "configureControlsContainerView(_:)"
             landmarkType = "7">
          </BreakpointContent>

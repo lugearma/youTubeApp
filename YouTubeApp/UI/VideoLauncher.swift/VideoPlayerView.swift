@@ -87,6 +87,7 @@ final class VideoPlayerView: UIView {
     super.init(frame: frame)
     
     backgroundColor = .black
+    setupGradientLayer()
     configureVideoPlayer()
     configureControlsContainerView(frame)
   }
@@ -112,6 +113,15 @@ final class VideoPlayerView: UIView {
       let seekTime = CMTime(value: value, timescale: 1)
       videoPlayer.seek(to: seekTime)
     }
+  }
+  
+  private func setupGradientLayer() {
+    let gradientLayer = CAGradientLayer()
+    gradientLayer.frame = bounds
+    gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+    gradientLayer.locations = [0.7, 1.3]
+    
+    controlsContainerView.layer.addSublayer(gradientLayer)
   }
   
   private func configureVideoPlayer() {
