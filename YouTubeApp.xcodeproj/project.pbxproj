@@ -22,6 +22,7 @@
 		922CB1E11F5A1B4400317951 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922CB1E01F5A1B4400317951 /* HomeView.swift */; };
 		922CB1E51F63376D00317951 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922CB1E41F63376D00317951 /* VideoPlayerView.swift */; };
 		922CB1E71F63379B00317951 /* VideoPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922CB1E61F63379B00317951 /* VideoPlayerViewModel.swift */; };
+		922F1B6E1FCD01A600E2BCC4 /* sampleVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 922F1B6D1FCD016D00E2BCC4 /* sampleVideo.mp4 */; };
 		925952B61EEB28790050D14F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925952B51EEB28790050D14F /* AppDelegate.swift */; };
 		925952B81EEB28790050D14F /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925952B71EEB28790050D14F /* HomeController.swift */; };
 		925952BD1EEB28790050D14F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 925952BC1EEB28790050D14F /* Assets.xcassets */; };
@@ -49,6 +50,7 @@
 		922CB1E01F5A1B4400317951 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeView.swift; path = UI/Home/Sections/HomeView/HomeView.swift; sourceTree = "<group>"; };
 		922CB1E41F63376D00317951 /* VideoPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoPlayerView.swift; path = UI/VideoLauncher.swift/VideoPlayerView.swift; sourceTree = "<group>"; };
 		922CB1E61F63379B00317951 /* VideoPlayerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoPlayerViewModel.swift; path = UI/VideoLauncher.swift/VideoPlayerViewModel.swift; sourceTree = "<group>"; };
+		922F1B6D1FCD016D00E2BCC4 /* sampleVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = sampleVideo.mp4; path = ../../../../../../../Downloads/sampleVideo.mp4; sourceTree = "<group>"; };
 		925952B21EEB28790050D14F /* YouTubeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTubeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		925952B51EEB28790050D14F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		925952B71EEB28790050D14F /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeController.swift; path = /Users/luisarias/Documents/Development/PersonalProjects/iOS/YouTubeApp/youTubeApp/YouTubeApp/UI/Home/HomeController.swift; sourceTree = "<absolute>"; };
@@ -157,9 +159,9 @@
 			isa = PBXGroup;
 			children = (
 				928A43DD1F6344DB0080E337 /* VideoLauncherView.swift */,
+				928A43DF1F6349DC0080E337 /* VideoLauncherViewModel.swift */,
 				922CB1E41F63376D00317951 /* VideoPlayerView.swift */,
 				922CB1E61F63379B00317951 /* VideoPlayerViewModel.swift */,
-				928A43DF1F6349DC0080E337 /* VideoLauncherViewModel.swift */,
 			);
 			name = VideoLauncher;
 			sourceTree = "<group>";
@@ -230,6 +232,7 @@
 		925952CA1EEB2E500050D14F /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
+				922F1B6D1FCD016D00E2BCC4 /* sampleVideo.mp4 */,
 				925952C11EEB28790050D14F /* Info.plist */,
 			);
 			name = Supporting;
@@ -318,6 +321,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				922F1B6E1FCD01A600E2BCC4 /* sampleVideo.mp4 in Resources */,
 				925952C01EEB28790050D14F /* LaunchScreen.storyboard in Resources */,
 				925952BD1EEB28790050D14F /* Assets.xcassets in Resources */,
 			);
