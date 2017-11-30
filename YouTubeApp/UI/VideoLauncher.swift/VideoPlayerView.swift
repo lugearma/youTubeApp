@@ -88,8 +88,8 @@ final class VideoPlayerView: UIView {
     
     backgroundColor = .black
     setupGradientLayer()
-    configureVideoPlayer()
-    configureControlsContainerView(frame)
+    setupVideoPlayer()
+    setupControlsContainerView(frame)
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -124,7 +124,7 @@ final class VideoPlayerView: UIView {
     controlsContainerView.layer.addSublayer(gradientLayer)
   }
   
-  private func configureVideoPlayer() {
+  private func setupVideoPlayer() {
     if let filePath = Bundle.main.path(forResource: "sampleVideo", ofType: ".mp4") {
       let url = URL(fileURLWithPath: filePath)
       videoPlayer = AVPlayer(url: url)
@@ -135,11 +135,19 @@ final class VideoPlayerView: UIView {
       
       videoPlayer.play()
       videoPlayer.addObserver(self, forKeyPath: "currentItem.loadedTimeRanges", options: .new, context: nil)
+      
+      let interval = CMTime(value: 1, timescale: 2)
+      videoPlayer.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main) { progressTime in
+        let seconds = CMTimeGetSeconds(progressTime)
+        let secondsStrings = String(format: "%02d", Int(seconds.truncatingRemainder(dividingBy: 60.0)))
+        let minutesStrings = String(format: "%02d", Int(seconds / 60))
+        
+        self.currentProgressVideoLabel.text = "\(minutesStrings):\(secondsStrings)"
+      }
     }
   }
   
-  private func configureControlsContainerView(_ frame: CGRect) {
-    
+  private func setupControlsContainerView(_ frame: CGRect) {
     controlsContainerView.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.width * 9/16)
     addSubview(controlsContainerView)
     
@@ -178,7 +186,6 @@ final class VideoPlayerView: UIView {
   }
   
   override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-    
     if keyPath == "currentItem.loadedTimeRanges" {
       activityIndicatorView.stopAnimating()
       controlsContainerView.backgroundColor = .clear
