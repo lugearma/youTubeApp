@@ -143,6 +143,13 @@ final class VideoPlayerView: UIView {
         let minutesStrings = String(format: "%02d", Int(seconds / 60))
         
         self.currentProgressVideoLabel.text = "\(minutesStrings):\(secondsStrings)"
+        
+        if let duration = self.videoPlayer.currentItem?.duration {
+          let durationSeconds = CMTimeGetSeconds(duration)
+          let currentValue = Float(seconds / durationSeconds)
+          self.videoProgressSlider.value = currentValue
+        }
+        
       }
     }
   }
